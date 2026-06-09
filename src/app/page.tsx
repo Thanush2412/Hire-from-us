@@ -18,7 +18,6 @@ import {
   Users,
   Briefcase,
   GraduationCap,
-  Building2,
   Clock,
   Zap,
   Star,
@@ -40,7 +39,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function GradientDivider() {
   return (
-    <div className="my-16 md:my-24">
+    <div className="my-4 md:my-5">
       <hr className="section-divider" />
     </div>
   );
@@ -49,10 +48,10 @@ function GradientDivider() {
 function CheckItem({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex items-start gap-3 group">
-      <span className="mt-0.5 flex-shrink-0 w-6 h-6 rounded-lg bg-gradient-to-br from-[#D528A2] to-[#F4A863] flex items-center justify-center group-hover:scale-110 transition-transform">
+      <span className="mt-1 flex-shrink-0 w-6 h-6 rounded-lg bg-gradient-to-br from-[#D528A2] to-[#F4A863] flex items-center justify-center group-hover:scale-110 transition-transform">
         <CheckCircle2 size={14} className="text-white" />
       </span>
-      <span className="text-[#DADADA] text-sm leading-relaxed">{children}</span>
+      <span className="text-[#EAEAEA] text-base md:text-lg leading-relaxed">{children}</span>
     </li>
   );
 }
@@ -92,7 +91,7 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             HERO
         ══════════════════════════════════════════ */}
-        <section className="relative pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+        <section className="relative pt-8 pb-10 md:pt-10 md:pb-14 overflow-hidden">
           {/* Background decoration */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <div className="absolute top-20 right-10 w-96 h-96 bg-[#D528A2] rounded-full opacity-10 blur-3xl"></div>
@@ -121,7 +120,12 @@ export default function HireFromUsPage() {
                 <span>Request Candidate Profiles</span>
                 <ArrowRight size={16} />
               </a>
-              <a href="#contact" className="btn-outline text-sm px-6 py-3 inline-flex items-center justify-center gap-2 font-semibold">
+              <a 
+                href="https://calendar.app.google/ub97dcaJ8MAbnSMz5" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn-outline text-sm px-6 py-3 inline-flex items-center justify-center gap-2 font-semibold"
+              >
                 <span>Schedule a Call</span>
                 <Calendar size={16} />
               </a>
@@ -150,7 +154,7 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             THE PROBLEM
         ══════════════════════════════════════════ */}
-        <section className="py-12 md:py-20">
+        <section className="py-4 md:py-6">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <div className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
@@ -182,7 +186,7 @@ export default function HireFromUsPage() {
             </div>
 
             <div className="text-center">
-              <div className="inline-block fp-card px-8 py-5">
+              <div className="inline-block fp-card px-6 py-4 sm:px-8 sm:py-5">
                 <p className="text-white font-bold text-base md:text-lg">
                   You don't just need candidates.{" "}
                   <span className="gradient-text">You need job-ready performers from Day 1.</span>
@@ -197,7 +201,7 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             OUR SOLUTION
         ══════════════════════════════════════════ */}
-        <section id="solution" className="py-12 md:py-20 relative overflow-hidden">
+        <section id="solution" className="py-4 md:py-6 relative overflow-hidden">
           {/* Background decoration */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl opacity-20 pointer-events-none">
             <div className="absolute top-20 left-0 w-72 h-72 bg-[#D528A2] rounded-full blur-3xl"></div>
@@ -235,23 +239,17 @@ export default function HireFromUsPage() {
                 </a>
               </div>
 
-              <div className="relative">
-                <div className="fp-card p-8 text-center relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#D528A2] to-[#F4A863] opacity-20 rounded-full blur-2xl"></div>
-                  <div className="relative">
-                    <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#D528A2] to-[#F4A863] flex items-center justify-center">
-                      <Building2 size={32} className="text-white" />
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-4 leading-snug">
-                      When you hire from us —
-                    </h3>
-                    <p className="text-[#DADADA]/70 text-base leading-relaxed mb-5">
-                      you're not taking a chance.
-                    </p>
-                    <p className="text-2xl font-black gradient-text leading-snug">
-                      You're making a data-backed hiring decision.
-                    </p>
-                  </div>
+              <div className="relative flex justify-center items-center mt-10 lg:mt-0">
+                {/* Background glow behind the image */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-[#D528A2] to-[#F4A863] opacity-20 rounded-full blur-3xl"></div>
+                
+                {/* Developer girl image */}
+                <div className="relative z-10 overflow-hidden rounded-2xl border border-white/10 shadow-2xl max-w-md w-full">
+                  <img 
+                    src="/developer_girl.png" 
+                    alt="Professional Developer" 
+                    className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
               </div>
             </div>
@@ -263,7 +261,7 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             WHAT MAKES CANDIDATES DIFFERENT
         ══════════════════════════════════════════ */}
-        <section className="py-12 md:py-20">
+        <section className="py-4 md:py-6">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-5">
               <Wrench size={14} className="text-[#F4A863]" />
@@ -319,7 +317,7 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             TALENT POOL
         ══════════════════════════════════════════ */}
-        <section id="talent-pool" className="py-8 md:py-12">
+        <section id="talent-pool" className="py-4 md:py-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
               <SectionLabel>
@@ -344,8 +342,8 @@ export default function HireFromUsPage() {
                 <ArrowRight size={20} />
               </a>
             </div>
-            <div className="fp-card p-8">
-              <h3 className="text-white font-bold mb-6 text-2xl">
+            <div className="fp-card p-6 sm:p-8">
+              <h3 className="text-white font-bold mb-6 text-xl sm:text-2xl">
                 Each Candidate Profile Includes:
               </h3>
               <div className="space-y-5">
@@ -357,10 +355,10 @@ export default function HireFromUsPage() {
                 ].map(({ icon: Icon, label }) => (
                   <div
                     key={label}
-                    className="flex items-center gap-5 p-5 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all"
+                    className="flex items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all"
                   >
                     <Icon size={28} className="text-[#F4A863] flex-shrink-0" />
-                    <span className="text-white font-medium text-lg">{label}</span>
+                    <span className="text-white font-medium text-base sm:text-lg">{label}</span>
                   </div>
                 ))}
               </div>
@@ -373,8 +371,8 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             HOW IT WORKS
         ══════════════════════════════════════════ */}
-        <section id="how-it-works" className="py-8 md:py-12">
-          <div className="text-center mb-14">
+        <section id="how-it-works" className="py-4 md:py-6">
+          <div className="text-center mb-10">
             <SectionLabel>
               <RefreshCw className="inline-block mr-2 -mt-1" size={18} />
               How Hiring From Us Works
@@ -406,7 +404,7 @@ export default function HireFromUsPage() {
                 desc: "Select candidates and onboard with minimal training required.",
               },
             ].map(({ step, title, desc }) => (
-              <div key={step} className="fp-card p-8 relative overflow-hidden hover:border-white/20 transition-all">
+              <div key={step} className="fp-card p-6 sm:p-8 relative overflow-hidden hover:border-white/20 transition-all">
                 <div
                   className="absolute top-6 right-6 text-6xl font-black opacity-10 text-white leading-none"
                   aria-hidden="true"
@@ -421,13 +419,19 @@ export default function HireFromUsPage() {
               </div>
             ))}
           </div>
-          <div className="mt-12 text-center">
-            <div className="inline-block fp-card px-10 py-5 flex items-center gap-4">
-              <Zap size={32} className="text-[#F4A863]" />
-              <p className="text-white font-bold text-xl">
+          <div className="mt-8 flex justify-center px-4">
+            <div 
+              className="fp-card px-4 py-3 sm:px-6 sm:py-4 flex items-center justify-center gap-2 sm:gap-3 max-w-full"
+              style={{ display: "flex", flexDirection: "row", flexWrap: "nowrap", alignItems: "center" }}
+            >
+              <Zap size={18} className="text-[#F4A863]" style={{ flexShrink: 0 }} />
+              <span 
+                className="text-white font-bold text-xs xs:text-sm sm:text-base md:text-lg"
+                style={{ whiteSpace: "nowrap" }}
+              >
                 Reduce your time-to-hire by up to{" "}
-                <span className="gradient-text text-3xl">70%</span>
-              </p>
+                <span className="gradient-text text-sm xs:text-base sm:text-xl md:text-2xl font-black">70%</span>
+              </span>
             </div>
           </div>
         </section>
@@ -437,7 +441,7 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             HIRING MODELS
         ══════════════════════════════════════════ */}
-        <section className="py-8 md:py-12">
+        <section className="py-4 md:py-6">
           <div className="text-center mb-14">
             <SectionLabel>
               <Coins className="inline-block mr-2 -mt-1" size={18} />
@@ -454,7 +458,7 @@ export default function HireFromUsPage() {
               { icon: FileText, title: "Apprenticeship Hiring", desc: "Aligned with the National Apprenticeship Training Scheme." },
               { icon: Users, title: "Bulk Hiring", desc: "Scale your team fast — whether you need 2 or 200 candidates." },
             ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="fp-card p-8 text-center hover:border-white/20 transition-all">
+              <div key={title} className="fp-card p-6 sm:p-8 text-center hover:border-white/20 transition-all">
                 <div className="flex justify-center mb-5">
                   <Icon size={44} className="text-[#F4A863]" />
                 </div>
@@ -463,7 +467,7 @@ export default function HireFromUsPage() {
               </div>
             ))}
           </div>
-          <p className="text-center mt-10 text-[#DADADA] text-lg">
+          <p className="text-center mt-10 text-[#DADADA] text-base sm:text-lg">
             Whether you&apos;re hiring{" "}
             <span className="text-white font-semibold text-xl">2 or 200</span> — we&apos;ve got you covered.
           </p>
@@ -474,7 +478,7 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             SUCCESS STORIES
         ══════════════════════════════════════════ */}
-        <section className="py-8 md:py-12">
+        <section className="py-4 md:py-6">
           <div className="text-center mb-14">
             <SectionLabel>
               <Trophy className="inline-block mr-2 -mt-1" size={18} />
@@ -490,7 +494,7 @@ export default function HireFromUsPage() {
               { metric: "80%", label: "Internship-to-Full-Time Conversion", icon: TrendingUp },
               { metric: "↓", label: "Significant Reduction in Training Costs", icon: Coins },
             ].map(({ metric, label, icon: Icon }) => (
-              <div key={label} className="fp-card p-10 text-center hover:border-white/20 transition-all">
+              <div key={label} className="fp-card p-6 sm:p-10 text-center hover:border-white/20 transition-all">
                 <div className="flex justify-center mb-5">
                   <Icon size={40} className="text-[#F4A863]" />
                 </div>
@@ -506,7 +510,7 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             COMPARISON TABLE
         ══════════════════════════════════════════ */}
-        <section className="py-8 md:py-12">
+        <section className="py-4 md:py-6">
           <div className="text-center mb-14">
             <SectionLabel>
               <TrendingUp className="inline-block mr-2 -mt-1" size={18} />
@@ -517,48 +521,50 @@ export default function HireFromUsPage() {
               <span className="gradient-text">FACE Prep Hiring</span>
             </h2>
           </div>
-          <div className="fp-card overflow-hidden">
-            <div className="grid grid-cols-3 text-base font-bold">
-              <div className="p-5 text-[#DADADA]/60 border-b border-white/10">Aspect</div>
-              <div className="p-5 text-[#DADADA]/60 border-b border-l border-white/10">Traditional Hiring</div>
-              <div className="p-5 text-white border-b border-l border-white/10 bg-white/5">
-                FACE Prep Hiring
-              </div>
-            </div>
-            {[
-              {
-                aspect: "Approach",
-                bad: "Hire → Train → Hope for performance",
-                good: "Train → Assess → Hire",
-              },
-              {
-                aspect: "Readiness",
-                bad: "High onboarding time",
-                good: "Ready from Day 1",
-              },
-              {
-                aspect: "Visibility",
-                bad: "Limited visibility into candidate capability",
-                good: "Data-backed candidate evaluation",
-              },
-              {
-                aspect: "Outcomes",
-                bad: "Higher hiring risk",
-                good: "Predictable performance outcomes",
-              },
-            ].map(({ aspect, bad, good }, i) => (
-              <div
-                key={aspect}
-                className={`grid grid-cols-3 text-base ${i < 3 ? "border-b border-white/10" : ""}`}
-              >
-                <div className="p-5 text-white/70 font-semibold">{aspect}</div>
-                <div className="p-5 compare-row-bad border-l border-white/10 text-[#DADADA]/80">{bad}</div>
-                <div className="p-5 compare-row-good border-l border-white/10 bg-white/5 flex items-center gap-3">
-                  <CheckCircle2 size={18} className="text-[#D528A2] flex-shrink-0" /> 
-                  <span className="text-white">{good}</span>
+          <div className="fp-card overflow-x-auto">
+            <div className="min-w-[650px]">
+              <div className="grid grid-cols-3 text-base font-bold">
+                <div className="p-5 text-[#DADADA]/60 border-b border-white/10">Aspect</div>
+                <div className="p-5 text-[#DADADA]/60 border-b border-l border-white/10">Traditional Hiring</div>
+                <div className="p-5 text-white border-b border-l border-white/10 bg-white/5">
+                  FACE Prep Hiring
                 </div>
               </div>
-            ))}
+              {[
+                {
+                  aspect: "Approach",
+                  bad: "Hire → Train → Hope for performance",
+                  good: "Train → Assess → Hire",
+                },
+                {
+                  aspect: "Readiness",
+                  bad: "High onboarding time",
+                  good: "Ready from Day 1",
+                },
+                {
+                  aspect: "Visibility",
+                  bad: "Limited visibility into candidate capability",
+                  good: "Data-backed candidate evaluation",
+                },
+                {
+                  aspect: "Outcomes",
+                  bad: "Higher hiring risk",
+                  good: "Predictable performance outcomes",
+                },
+              ].map(({ aspect, bad, good }, i) => (
+                <div
+                  key={aspect}
+                  className={`grid grid-cols-3 text-base ${i < 3 ? "border-b border-white/10" : ""}`}
+                >
+                  <div className="p-5 text-white/70 font-semibold">{aspect}</div>
+                  <div className="p-5 compare-row-bad border-l border-white/10 text-[#DADADA]/80">{bad}</div>
+                  <div className="p-5 compare-row-good border-l border-white/10 bg-white/5 flex items-center gap-3">
+                    <CheckCircle2 size={18} className="text-[#D528A2] flex-shrink-0" /> 
+                    <span className="text-white">{good}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           <p className="text-center mt-10 text-white font-semibold text-xl">
             We don&apos;t just help you hire.{" "}
@@ -571,9 +577,9 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             LIMITED ACCESS URGENCY
         ══════════════════════════════════════════ */}
-        <section className="py-8 md:py-12">
+        <section className="py-4 md:py-6">
           <div
-            className="rounded-2xl p-10 md:p-14 text-center"
+            className="rounded-2xl p-6 sm:p-10 md:p-14 text-center"
             style={{
               background: "linear-gradient(135deg, rgba(213,40,162,0.15) 0%, rgba(244,168,99,0.1) 100%)",
               border: "1px solid rgba(213,40,162,0.3)",
@@ -583,14 +589,14 @@ export default function HireFromUsPage() {
               <AlertTriangle size={56} className="text-[#F4A863]" />
             </div>
             <SectionLabel>Limited Access</SectionLabel>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mt-6 mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-6 mb-6 leading-tight">
               Top Talent Gets Hired Early
             </h2>
-            <p className="text-[#DADADA] text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-[#DADADA] text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
               Our best candidates are often hired before graduation. Get early access
               to secure top performers before they&apos;re gone.
             </p>
-            <a href="#contact" className="btn-gradient text-lg px-12 py-4 inline-flex items-center gap-3 font-semibold">
+            <a href="#contact" className="btn-gradient text-base sm:text-lg px-8 sm:px-12 py-3 sm:py-4 inline-flex items-center gap-3 font-semibold">
               <span>Get Early Access Now</span>
               <ArrowRight size={20} />
             </a>
@@ -602,7 +608,7 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             CONTACT / FORM
         ══════════════════════════════════════════ */}
-        <section id="contact" className="py-4 md:py-8">
+        <section id="contact" className="py-2 md:py-4">
           <div className="text-center mb-12">
             <SectionLabel>
               <Phone className="inline-block mr-2 -mt-1" size={16} />
@@ -618,7 +624,7 @@ export default function HireFromUsPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
             {/* Form */}
-            <div className="lg:col-span-3 fp-card p-8">
+            <div className="lg:col-span-3 fp-card p-6 sm:p-8">
               <h3 className="text-white font-bold text-xl mb-6">
                 Request Candidate Profiles
               </h3>
@@ -627,7 +633,7 @@ export default function HireFromUsPage() {
 
             {/* Direct contact */}
             <div className="lg:col-span-2 space-y-6">
-              <div className="fp-card p-6">
+              <div className="fp-card p-5 sm:p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D528A2] to-[#F4A863] flex items-center justify-center text-white font-bold text-lg">
                     AJ
@@ -658,14 +664,19 @@ export default function HireFromUsPage() {
                 </p>
               </div>
 
-              <div className="fp-card p-6">
+              <div className="fp-card p-5 sm:p-6">
                 <h4 className="text-white font-bold mb-4">Also Available:</h4>
                 <div className="space-y-3">
                   <a href="#contact" className="btn-gradient w-full text-sm py-2.5 flex items-center justify-center gap-2">
                     <span>Request Candidate Profiles</span>
                     <ArrowRight size={14} />
                   </a>
-                  <a href="#contact" className="btn-outline w-full text-sm py-2.5 flex items-center justify-center gap-2">
+                  <a 
+                    href="https://calendar.app.google/ub97dcaJ8MAbnSMz5" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="btn-outline w-full text-sm py-2.5 flex items-center justify-center gap-2"
+                  >
                     <span>Book a Hiring Consultation</span>
                     <Calendar size={14} />
                   </a>
@@ -680,7 +691,7 @@ export default function HireFromUsPage() {
         {/* ══════════════════════════════════════════
             FAQ
         ══════════════════════════════════════════ */}
-        <section className="py-8 md:py-12">
+        <section className="py-4 md:py-6">
           <div className="text-center mb-14">
             <SectionLabel>
               <HelpCircle className="inline-block mr-2 -mt-1" size={18} />
@@ -700,9 +711,9 @@ export default function HireFromUsPage() {
       </main>
 
       {/* ── FOOTER ── */}
-      <footer className="border-t border-white/10 py-12 px-6">
+      <footer className="border-t border-white/10 py-8 sm:py-12 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
+          <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
             Stop hiring potential.{" "}
             <span className="gradient-text">Start hiring performance.</span>
           </p>

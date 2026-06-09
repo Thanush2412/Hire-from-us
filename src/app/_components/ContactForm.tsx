@@ -5,10 +5,37 @@ import { CheckCircle2, ArrowRight } from "lucide-react";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setErrorMsg("");
+
+    const formData = new FormData(e.currentTarget);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+      if (response.ok && result.success) {
+        setSubmitted(true);
+      } else {
+        setErrorMsg(result.error || "Failed to submit request. Please try again.");
+      }
+    } catch (err) {
+      setErrorMsg("An error occurred. Please check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -123,8 +150,17 @@ export default function ContactForm() {
           className={inputClass}
         />
       </div>
-      <button type="submit" className="btn-gradient w-full mt-4 py-4 text-lg flex items-center justify-center gap-3 font-semibold">
-        <span>Request Candidate Profiles</span>
+      {errorMsg && (
+        <p className="text-[#F4A863] text-sm font-semibold text-center mt-2">
+          {errorMsg}
+        </p>
+      )}
+      <button 
+        type="submit" 
+        disabled={submitting}
+        className="btn-gradient w-full mt-4 py-4 text-lg flex items-center justify-center gap-3 font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <span>{submitting ? "Sending Request..." : "Request Candidate Profiles"}</span>
         <ArrowRight size={20} />
       </button>
     </form>
