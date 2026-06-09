@@ -63,16 +63,12 @@ export default function HireFromUsPage() {
       {/* ── NAV ── */}
       <header className="sticky top-0 z-50 border-b border-white/10 backdrop-blur-xl bg-[#3D3777]/90">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#D528A2] to-[#F4A863] flex items-center justify-center">
-              <span className="text-white font-black text-lg">FP</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-white font-bold text-xl tracking-tight leading-none">
-                FACE<span className="gradient-text">Prep</span>
-              </span>
-              <span className="text-white/40 text-xs">Campus Hiring</span>
-            </div>
+          <div className="flex items-center">
+            <img 
+              src="/faceprepcampus-logo.svg" 
+              alt="FACE Prep Campus Logo" 
+              className="h-9 w-auto"
+            />
           </div>
           <nav className="hidden lg:flex items-center gap-8 text-sm text-[#DADADA] font-medium">
             <a href="#solution" className="hover:text-[#F4A863] transition-all hover:scale-105">Solution</a>
