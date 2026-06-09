@@ -499,24 +499,6 @@ export default function HireFromUsPage() {
               </div>
             ))}
           </div>
-          {/* Testimonial */}
-          <div className="fp-card p-10 max-w-3xl mx-auto relative">
-            <div
-              className="absolute top-8 left-8 text-7xl leading-none gradient-text opacity-40"
-              aria-hidden="true"
-            >
-              &ldquo;
-            </div>
-            <blockquote className="pt-8 pl-6">
-              <p className="text-white text-xl italic leading-relaxed mb-6">
-                FACE Prep candidates were productive within weeks. It significantly
-                reduced our onboarding effort.
-              </p>
-              <footer className="text-[#F4A863] font-semibold text-base">
-                — Hiring Manager, Tech Company
-              </footer>
-            </blockquote>
-          </div>
         </section>
 
         <GradientDivider />
