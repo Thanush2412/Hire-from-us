@@ -1,5 +1,7 @@
 import FaqAccordion from "./_components/FaqAccordion";
 import ContactForm from "./_components/ContactForm";
+import MobileComparison from "./_components/MobileComparison";
+import { FadeUp, StaggerGrid, StaggerItem, SlideLeft, SlideRight, ScalePop } from "./_components/Animate";
 import {
   Rocket,
   Target,
@@ -95,53 +97,58 @@ export default function HireFromUsPage() {
           </div>
 
           <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
-              <Rocket size={14} className="text-[#F4A863]" />
-              <span className="text-xs font-semibold text-white uppercase tracking-wider">Hire From Us</span>
-            </div>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6 tracking-tight">
-              Hire Pre-Trained,<br />
-              <span className="gradient-text">Job-Ready</span> Tech Talent<br />
-              <span className="text-2xl md:text-3xl lg:text-4xl text-white/80">From Day 1</span>
-            </h1>
-            
-            <p className="text-base md:text-lg text-[#DADADA]/90 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Skip months of training and uncertainty. Access industry-ready candidates
-              trained inside campuses, benchmarked on real hiring standards.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <a href="#contact" className="btn-gradient text-sm px-6 py-3 inline-flex items-center justify-center gap-2 font-semibold">
-                <span>Request Candidate Profiles</span>
-                <ArrowRight size={16} />
-              </a>
-              <a 
-                href="https://calendar.app.google/ub97dcaJ8MAbnSMz5" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="btn-outline text-sm px-6 py-3 inline-flex items-center justify-center gap-2 font-semibold"
-              >
-                <span>Schedule a Call</span>
-                <Calendar size={16} />
-              </a>
-            </div>
+            <FadeUp>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
+                <Rocket size={14} className="text-[#F4A863]" />
+                <span className="text-xs font-semibold text-white uppercase tracking-wider">Hire From Us</span>
+              </div>
+            </FadeUp>
+            <FadeUp delay={0.1}>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6 tracking-tight">
+                Hire Pre-Trained,<br />
+                <span className="gradient-text">Job-Ready</span> Tech Talent<br />
+                <span className="text-2xl md:text-3xl lg:text-4xl text-white/80">From Day 1</span>
+              </h1>
+            </FadeUp>
+            <FadeUp delay={0.2}>
+              <p className="text-base md:text-lg text-[#DADADA]/90 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Skip months of training and uncertainty. Access industry-ready candidates
+                trained inside campuses, benchmarked on real hiring standards.
+              </p>
+            </FadeUp>
+            <FadeUp delay={0.3}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                <a href="#contact" className="btn-gradient text-sm px-6 py-3 inline-flex items-center justify-center gap-2 font-semibold">
+                  <span>Request Candidate Profiles</span>
+                  <ArrowRight size={16} />
+                </a>
+                <a 
+                  href="https://calendar.app.google/ub97dcaJ8MAbnSMz5" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-outline text-sm px-6 py-3 inline-flex items-center justify-center gap-2 font-semibold"
+                >
+                  <span>Schedule a Call</span>
+                  <Calendar size={16} />
+                </a>
+              </div>
+            </FadeUp>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+            <StaggerGrid className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
               {[
                 { icon: Zap, metric: "60%", label: "Faster Onboarding" },
                 { icon: TrendingUp, metric: "80%", label: "PPO Conversion" },
                 { icon: CheckCircle2, metric: "Day 1", label: "Productive" },
                 { icon: Shield, metric: "100%", label: "Verified Skills" },
               ].map(({ icon: Icon, metric, label }) => (
-                <div key={label} className="fp-card p-5 text-center">
+                <StaggerItem key={label} className="fp-card p-5 text-center">
                   <Icon size={20} className="text-[#F4A863] mx-auto mb-2" />
                   <div className="text-2xl font-black gradient-text mb-1">{metric}</div>
                   <div className="text-xs text-[#DADADA]/70 font-medium">{label}</div>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGrid>
           </div>
         </section>
 
@@ -152,7 +159,7 @@ export default function HireFromUsPage() {
         ══════════════════════════════════════════ */}
         <section className="py-4 md:py-6">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <FadeUp className="text-center mb-12">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6">
                 <Target size={14} className="text-[#F4A863]" />
                 <span className="text-xs font-semibold text-white uppercase tracking-wider">The Problem</span>
@@ -163,32 +170,32 @@ export default function HireFromUsPage() {
               <p className="text-base text-[#DADADA]/80 max-w-2xl mx-auto">
                 Every company wants to hire fresh talent. But the reality?
               </p>
-            </div>
+            </FadeUp>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+            <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
               {[
                 { icon: AlertTriangle, text: "Freshers often lack real-world skills", color: "#F4A863" },
                 { icon: Clock, text: "Teams spend months on training before productivity", color: "#D528A2" },
                 { icon: Target, text: "Hiring outcomes are unpredictable", color: "#F4A863" },
                 { icon: TrendingUp, text: "Attrition risk is high", color: "#D528A2" },
               ].map(({ icon: Icon, text, color }) => (
-                <div key={text} className="fp-card p-6 text-center group">
+                <StaggerItem key={text} className="fp-card p-6 text-center group">
                   <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Icon size={28} style={{ color }} />
                   </div>
                   <p className="text-[#DADADA] text-sm leading-relaxed">{text}</p>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGrid>
 
-            <div className="text-center">
+            <FadeUp className="text-center">
               <div className="inline-block fp-card px-6 py-4 sm:px-8 sm:py-5">
                 <p className="text-white font-bold text-base md:text-lg">
                   You don't just need candidates.{" "}
                   <span className="gradient-text">You need job-ready performers from Day 1.</span>
                 </p>
               </div>
-            </div>
+            </FadeUp>
           </div>
         </section>
 
@@ -206,7 +213,7 @@ export default function HireFromUsPage() {
 
           <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
+              <SlideLeft>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-5">
                   <Lightbulb size={14} className="text-[#F4A863]" />
                   <span className="text-xs font-semibold text-white uppercase tracking-wider">Our Solution</span>
@@ -233,9 +240,9 @@ export default function HireFromUsPage() {
                   <span>Explore Talent Pool</span>
                   <ArrowRight size={16} />
                 </a>
-              </div>
+              </SlideLeft>
 
-              <div className="relative flex justify-center items-center mt-10 lg:mt-0">
+              <SlideRight className="relative flex justify-center items-center mt-10 lg:mt-0">
                 {/* Background glow behind the image */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-[#D528A2] to-[#F4A863] opacity-20 rounded-full blur-3xl"></div>
                 
@@ -247,7 +254,7 @@ export default function HireFromUsPage() {
                     className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500"
                   />
                 </div>
-              </div>
+              </SlideRight>
             </div>
           </div>
         </section>
@@ -258,7 +265,7 @@ export default function HireFromUsPage() {
             WHAT MAKES CANDIDATES DIFFERENT
         ══════════════════════════════════════════ */}
         <section className="py-4 md:py-6">
-          <div className="text-center mb-12">
+          <FadeUp className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-5">
               <Wrench size={14} className="text-[#F4A863]" />
               <span className="text-xs font-semibold text-white uppercase tracking-wider">What Makes Our Candidates Different</span>
@@ -267,8 +274,8 @@ export default function HireFromUsPage() {
               Not Freshers.{" "}
               <span className="gradient-text">Pre-Engineered Talent.</span>
             </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          </FadeUp>
+          <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {[
               {
                 icon: Code2,
@@ -291,7 +298,7 @@ export default function HireFromUsPage() {
                 desc: "Each profile comes with assessment scores, project work, and performance insights — so you hire with confidence.",
               },
             ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="fp-card p-6 group">
+              <StaggerItem key={title} className="fp-card p-6 group">
                 <div className="flex gap-5">
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#D528A2]/20 to-[#F4A863]/20 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -303,9 +310,9 @@ export default function HireFromUsPage() {
                     <p className="text-[#DADADA]/80 text-sm leading-relaxed">{desc}</p>
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
         </section>
 
         <GradientDivider />
@@ -315,7 +322,7 @@ export default function HireFromUsPage() {
         ══════════════════════════════════════════ */}
         <section id="talent-pool" className="py-4 md:py-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <div>
+            <SlideLeft>
               <SectionLabel>
                 <BarChart3 className="inline-block mr-2 -mt-1" size={18} />
                 Explore Our Talent Pool
@@ -337,8 +344,8 @@ export default function HireFromUsPage() {
                 <span>Request Sample Candidate Profiles</span>
                 <ArrowRight size={20} />
               </a>
-            </div>
-            <div className="fp-card p-6 sm:p-8">
+            </SlideLeft>
+            <SlideRight className="fp-card p-6 sm:p-8">
               <h3 className="text-white font-bold mb-6 text-xl sm:text-2xl">
                 Each Candidate Profile Includes:
               </h3>
@@ -358,7 +365,7 @@ export default function HireFromUsPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </SlideRight>
           </div>
         </section>
 
@@ -368,7 +375,7 @@ export default function HireFromUsPage() {
             HOW IT WORKS
         ══════════════════════════════════════════ */}
         <section id="how-it-works" className="py-4 md:py-6">
-          <div className="text-center mb-10">
+          <FadeUp className="text-center mb-10">
             <SectionLabel>
               <RefreshCw className="inline-block mr-2 -mt-1" size={18} />
               How Hiring From Us Works
@@ -376,8 +383,8 @@ export default function HireFromUsPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
               Simple. Fast. Predictable.
             </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          </FadeUp>
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
                 step: "01",
@@ -400,7 +407,7 @@ export default function HireFromUsPage() {
                 desc: "Select candidates and onboard with minimal training required.",
               },
             ].map(({ step, title, desc }) => (
-              <div key={step} className="fp-card p-6 sm:p-8 relative overflow-hidden hover:border-white/20 transition-all">
+              <StaggerItem key={step} className="fp-card p-6 sm:p-8 relative overflow-hidden hover:border-white/20 transition-all">
                 <div
                   className="absolute top-6 right-6 text-6xl font-black opacity-10 text-white leading-none"
                   aria-hidden="true"
@@ -412,9 +419,9 @@ export default function HireFromUsPage() {
                 </div>
                 <h3 className="text-white font-bold text-lg mb-3 relative z-10">{title}</h3>
                 <p className="text-[#DADADA] text-base leading-relaxed relative z-10">{desc}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
           <div className="mt-8 flex justify-center px-4">
             <div 
               className="fp-card px-4 py-3 sm:px-6 sm:py-4 flex items-center justify-center gap-2 sm:gap-3 max-w-full"
@@ -438,7 +445,7 @@ export default function HireFromUsPage() {
             HIRING MODELS
         ══════════════════════════════════════════ */}
         <section className="py-4 md:py-6">
-          <div className="text-center mb-14">
+          <FadeUp className="text-center mb-14">
             <SectionLabel>
               <Coins className="inline-block mr-2 -mt-1" size={18} />
               Flexible Hiring Models
@@ -446,23 +453,23 @@ export default function HireFromUsPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
               Hire the Way That Works for You
             </h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          </FadeUp>
+          <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: Briefcase, title: "Full-Time Hiring (FTE)", desc: "Direct placement of job-ready candidates into your team." },
               { icon: RefreshCw, title: "Internship → PPO", desc: "Internship to Pre-Placement Offers — evaluate before you commit." },
               { icon: FileText, title: "Apprenticeship Hiring", desc: "Aligned with the National Apprenticeship Training Scheme." },
               { icon: Users, title: "Bulk Hiring", desc: "Scale your team fast — whether you need 2 or 200 candidates." },
             ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="fp-card p-6 sm:p-8 text-center hover:border-white/20 transition-all">
+              <StaggerItem key={title} className="fp-card p-6 sm:p-8 text-center hover:border-white/20 transition-all">
                 <div className="flex justify-center mb-5">
                   <Icon size={44} className="text-[#F4A863]" />
                 </div>
                 <h3 className="text-white font-bold text-lg mb-3">{title}</h3>
                 <p className="text-[#DADADA] text-base leading-relaxed">{desc}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
           <p className="text-center mt-10 text-[#DADADA] text-base sm:text-lg">
             Whether you&apos;re hiring{" "}
             <span className="text-white font-semibold text-xl">2 or 200</span> — we&apos;ve got you covered.
@@ -484,21 +491,21 @@ export default function HireFromUsPage() {
               Companies Are Already Hiring Better with FACE Prep
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
               { metric: "60%", label: "Faster Onboarding", icon: Zap },
               { metric: "80%", label: "Internship-to-Full-Time Conversion", icon: TrendingUp },
               { metric: "↓", label: "Significant Reduction in Training Costs", icon: Coins },
             ].map(({ metric, label, icon: Icon }) => (
-              <div key={label} className="fp-card p-6 sm:p-10 text-center hover:border-white/20 transition-all">
-                <div className="flex justify-center mb-5">
+              <StaggerItem key={label} className="fp-card p-6 sm:p-10 text-center hover:border-white/20 transition-all">
+                <ScalePop className="flex justify-center mb-5">
                   <Icon size={40} className="text-[#F4A863]" />
-                </div>
+                </ScalePop>
                 <div className="text-6xl font-black gradient-text mb-4">{metric}</div>
                 <p className="text-[#DADADA] font-medium text-lg">{label}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGrid>
         </section>
 
         <GradientDivider />
@@ -517,51 +524,53 @@ export default function HireFromUsPage() {
               <span className="gradient-text">FACE Prep Hiring</span>
             </h2>
           </div>
-          <div className="fp-card overflow-x-auto">
-            <div className="min-w-[650px]">
-              <div className="grid grid-cols-3 text-base font-bold">
-                <div className="p-5 text-[#DADADA]/60 border-b border-white/10">Aspect</div>
-                <div className="p-5 text-[#DADADA]/60 border-b border-l border-white/10">Traditional Hiring</div>
-                <div className="p-5 text-white border-b border-l border-white/10 bg-white/5">
-                  FACE Prep Hiring
+          {/* Desktop view: Table */}
+          <div className="hidden md:block fp-card overflow-hidden">
+            <div className="grid grid-cols-3 text-base font-bold">
+              <div className="p-5 text-[#DADADA]/60 border-b border-white/10">Aspect</div>
+              <div className="p-5 text-[#DADADA]/60 border-b border-l border-white/10">Traditional Hiring</div>
+              <div className="p-5 text-white border-b border-l border-white/10 bg-white/5">
+                FACE Prep Hiring
+              </div>
+            </div>
+            {[
+              {
+                aspect: "Approach",
+                bad: "Hire → Train → Hope for performance",
+                good: "Train → Assess → Hire",
+              },
+              {
+                aspect: "Readiness",
+                bad: "High onboarding time",
+                good: "Ready from Day 1",
+              },
+              {
+                aspect: "Visibility",
+                bad: "Limited visibility into candidate capability",
+                good: "Data-backed candidate evaluation",
+              },
+              {
+                aspect: "Outcomes",
+                bad: "Higher hiring risk",
+                good: "Predictable performance outcomes",
+              },
+            ].map(({ aspect, bad, good }, i) => (
+              <div
+                key={aspect}
+                className={`grid grid-cols-3 text-base ${i < 3 ? "border-b border-white/10" : ""}`}
+              >
+                <div className="p-5 text-white/70 font-semibold">{aspect}</div>
+                <div className="p-5 compare-row-bad border-l border-white/10 text-[#DADADA]/80">{bad}</div>
+                <div className="p-5 compare-row-good border-l border-white/10 bg-white/5 flex items-center gap-3">
+                  <CheckCircle2 size={18} className="text-[#D528A2] flex-shrink-0" /> 
+                  <span className="text-white">{good}</span>
                 </div>
               </div>
-              {[
-                {
-                  aspect: "Approach",
-                  bad: "Hire → Train → Hope for performance",
-                  good: "Train → Assess → Hire",
-                },
-                {
-                  aspect: "Readiness",
-                  bad: "High onboarding time",
-                  good: "Ready from Day 1",
-                },
-                {
-                  aspect: "Visibility",
-                  bad: "Limited visibility into candidate capability",
-                  good: "Data-backed candidate evaluation",
-                },
-                {
-                  aspect: "Outcomes",
-                  bad: "Higher hiring risk",
-                  good: "Predictable performance outcomes",
-                },
-              ].map(({ aspect, bad, good }, i) => (
-                <div
-                  key={aspect}
-                  className={`grid grid-cols-3 text-base ${i < 3 ? "border-b border-white/10" : ""}`}
-                >
-                  <div className="p-5 text-white/70 font-semibold">{aspect}</div>
-                  <div className="p-5 compare-row-bad border-l border-white/10 text-[#DADADA]/80">{bad}</div>
-                  <div className="p-5 compare-row-good border-l border-white/10 bg-white/5 flex items-center gap-3">
-                    <CheckCircle2 size={18} className="text-[#D528A2] flex-shrink-0" /> 
-                    <span className="text-white">{good}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
+
+          {/* Mobile view: Sticky Scroll-driven Comparison reveal */}
+          <MobileComparison />
           <p className="text-center mt-10 text-white font-semibold text-xl">
             We don&apos;t just help you hire.{" "}
             <span className="gradient-text text-2xl">We help you hire right.</span>
@@ -574,6 +583,7 @@ export default function HireFromUsPage() {
             LIMITED ACCESS URGENCY
         ══════════════════════════════════════════ */}
         <section className="py-4 md:py-6">
+          <FadeUp>
           <div
             className="rounded-2xl p-6 sm:p-10 md:p-14 text-center"
             style={{
@@ -581,9 +591,9 @@ export default function HireFromUsPage() {
               border: "1px solid rgba(213,40,162,0.3)",
             }}
           >
-            <div className="flex justify-center mb-6">
+            <ScalePop className="flex justify-center mb-6">
               <AlertTriangle size={56} className="text-[#F4A863]" />
-            </div>
+            </ScalePop>
             <SectionLabel>Limited Access</SectionLabel>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-6 mb-6 leading-tight">
               Top Talent Gets Hired Early
@@ -597,6 +607,7 @@ export default function HireFromUsPage() {
               <ArrowRight size={20} />
             </a>
           </div>
+          </FadeUp>
         </section>
 
         <GradientDivider />
@@ -708,7 +719,7 @@ export default function HireFromUsPage() {
 
       {/* ── FOOTER ── */}
       <footer className="border-t border-white/10 py-8 sm:py-12 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto text-center">
+        <FadeUp className="max-w-6xl mx-auto text-center">
           <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">
             Stop hiring potential.{" "}
             <span className="gradient-text">Start hiring performance.</span>
@@ -716,7 +727,7 @@ export default function HireFromUsPage() {
           <p className="text-[#DADADA]/50 text-base mt-6">
             © {new Date().getFullYear()} FACE Prep Campus. All rights reserved.
           </p>
-        </div>
+        </FadeUp>
       </footer>
     </div>
   );

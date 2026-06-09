@@ -16,7 +16,7 @@
 body {
   background-color: #3D3777;
   color: #DADADA;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Gradient button */
@@ -145,3 +145,23 @@ html {
 .pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
 }
+
+/* Fade in animation for text swaps */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(6px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.35s ease-out forwards;
+}
+
+/* Hide scrollbar (comparison scroll box) */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
