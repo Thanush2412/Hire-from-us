@@ -518,8 +518,27 @@ export default function HireFromUsPage() {
               <IconBox motion="flip" className="flex justify-center mb-5">
                 <Coins size={40} className="text-[#F4A863]" />
               </IconBox>
-              <div className="text-6xl font-black mb-4 leading-none">
-                <span className="animate-slide-down-loop inline-block gradient-text">↓</span>
+              <div className="flex justify-center mb-4">
+                <svg
+                  width="60"
+                  height="60"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="url(#arrow-gradient)"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="animate-slide-down-loop"
+                >
+                  <defs>
+                    <linearGradient id="arrow-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#D528A2" />
+                      <stop offset="100%" stopColor="#F4A863" />
+                    </linearGradient>
+                  </defs>
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <polyline points="19 12 12 19 5 12"></polyline>
+                </svg>
               </div>
               <p className="text-[#DADADA] font-medium text-lg">Significant Reduction in Training Costs</p>
             </StaggerItem>
