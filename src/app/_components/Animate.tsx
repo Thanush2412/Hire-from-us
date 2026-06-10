@@ -269,13 +269,7 @@ export function CountingNumber({
     const match = value.match(/^([^0-9]*)([0-9]+)([^0-9]*)$/);
 
     if (!match) {
-      if (value === "↓") {
-        setDisplayValue(
-          <span className="animate-slide-down-loop inline-block">↓</span>
-        );
-      } else {
-        setDisplayValue(value);
-      }
+      setDisplayValue(value);
       return;
     }
 

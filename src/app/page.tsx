@@ -499,9 +499,8 @@ export default function HireFromUsPage() {
           </div>
           <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
-              { metric: "60%", label: "Faster Onboarding",                    icon: Zap,       motion: "flash" as const },
-              { metric: "80%", label: "Internship-to-Full-Time Conversion",    icon: TrendingUp, motion: "rise"  as const },
-              { metric: "↓",   label: "Significant Reduction in Training Costs",icon: Coins,     motion: "flip"  as const },
+              { metric: "60%", label: "Faster Onboarding",                 icon: Zap,        motion: "flash" as const },
+              { metric: "80%", label: "Internship-to-Full-Time Conversion", icon: TrendingUp, motion: "rise"  as const },
             ].map(({ metric, label, icon: Icon, motion: m }) => (
               <StaggerItem key={label} className="fp-card p-6 sm:p-10 text-center hover:border-white/20 transition-all">
                 <IconBox motion={m} className="flex justify-center mb-5">
@@ -513,6 +512,17 @@ export default function HireFromUsPage() {
                 <p className="text-[#DADADA] font-medium text-lg">{label}</p>
               </StaggerItem>
             ))}
+
+            {/* ↓ card rendered directly so the arrow is always visible */}
+            <StaggerItem className="fp-card p-6 sm:p-10 text-center hover:border-white/20 transition-all">
+              <IconBox motion="flip" className="flex justify-center mb-5">
+                <Coins size={40} className="text-[#F4A863]" />
+              </IconBox>
+              <div className="text-6xl font-black gradient-text mb-4 leading-none">
+                <span className="animate-slide-down-loop inline-block">↓</span>
+              </div>
+              <p className="text-[#DADADA] font-medium text-lg">Significant Reduction in Training Costs</p>
+            </StaggerItem>
           </StaggerGrid>
         </section>
 
