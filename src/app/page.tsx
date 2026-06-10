@@ -518,8 +518,8 @@ export default function HireFromUsPage() {
               <IconBox motion="flip" className="flex justify-center mb-5">
                 <Coins size={40} className="text-[#F4A863]" />
               </IconBox>
-              <div className="text-6xl font-black gradient-text mb-4 leading-none">
-                <span className="animate-slide-down-loop inline-block">↓</span>
+              <div className="text-6xl font-black mb-4 leading-none">
+                <span className="animate-slide-down-loop inline-block gradient-text">↓</span>
               </div>
               <p className="text-[#DADADA] font-medium text-lg">Significant Reduction in Training Costs</p>
             </StaggerItem>
