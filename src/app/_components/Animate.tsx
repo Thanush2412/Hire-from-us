@@ -124,8 +124,8 @@ const ICON_VARIANTS: Record<string, { hidden: TargetAndTransition; visible: Targ
     visible: { opacity: 1, x: 0, transition: { type: "spring" as const, stiffness: 200, damping: 20 } },
   },
   flip: {
-    hidden: { opacity: 0, rotateY: 90, scale: 0.8 },
-    visible: { opacity: 1, rotateY: 0, scale: 1, transition: { type: "spring" as const, stiffness: 180, damping: 18 } },
+    hidden: { opacity: 0, rotateY: 75, scale: 0.85, transformPerspective: 800 },
+    visible: { opacity: 1, rotateY: 0, scale: 1, transformPerspective: 800, transition: { type: "spring" as const, stiffness: 180, damping: 18 } },
   },
 };
 
