@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import FaqAccordion from "./_components/FaqAccordion";
 import ContactForm from "./_components/ContactForm";
