@@ -2,6 +2,12 @@
 
 import { motion, useInView, TargetAndTransition } from "framer-motion";
 import { ReactNode, useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 /* ── Fade up from below when scrolled into view ── */
 export function FadeUp({
@@ -315,7 +321,7 @@ export function AnimatedStep({
   index: number;
 }) {
   return (
-    <StaggerItem className="fp-card p-6 sm:p-8 relative overflow-hidden hover:border-white/20 transition-all flex flex-col justify-between">
+    <StaggerItem className="fp-card p-5 sm:p-7 lg:p-8 relative overflow-hidden hover:border-white/20 transition-all flex flex-col justify-between">
       <div>
         <motion.div
           initial={{ opacity: 0, x: -28 }}
@@ -340,3 +346,150 @@ export function AnimatedStep({
     </StaggerItem>
   );
 }
+
+/* ── GSAP-powered Vector Drawing & Springy Hover Icon Box ── */
+export function GSAPIconBox({
+  children,
+  className = "",
+  hoverStyle = "spring-rotate",
+}: {
+  children: ReactNode;
+  className?: string;
+  hoverStyle?: "spring-rotate" | "bounce" | "wiggle" | "flip" | "spin" | "float" | "pulse";
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Find the SVG and its vector elements
+    const svg = container.querySelector("svg");
+    if (!svg) return;
+
+    const vectors = svg.querySelectorAll("path, circle, rect, line, polyline, polygon, ellipse");
+    
+    // Set up initial draw state for each vector element
+    vectors.forEach((el) => {
+      const svgEl = el as SVGGeometryElement;
+      let length = 100;
+      try {
+        if (typeof svgEl.getTotalLength === "function") {
+          length = svgEl.getTotalLength();
+        }
+      } catch (e) {}
+      
+      gsap.set(svgEl, {
+        strokeDasharray: length,
+        strokeDashoffset: length,
+      });
+    });
+
+    // Animate drawing when scrolled into view
+    const trigger = ScrollTrigger.create({
+      trigger: container,
+      start: "top 90%",
+      onEnter: () => {
+        gsap.to(vectors, {
+          strokeDashoffset: 0,
+          duration: 1.2,
+          ease: "power2.out",
+          stagger: 0.08,
+        });
+      },
+      once: true,
+    });
+
+    // Hover effect
+    const handleMouseEnter = () => {
+      let animProps: gsap.TweenVars = { scale: 1.15, rotate: 8, duration: 0.6, ease: "elastic.out(1.2, 0.4)", overwrite: "auto" };
+      
+      switch (hoverStyle) {
+        case "bounce":
+          // A premium springy bounce timeline: stretch/jump up, squash/bounce back down
+          const tlBounce = gsap.timeline({ overwrite: "auto" });
+          tlBounce.to(container, { y: -16, scaleY: 1.15, scaleX: 0.85, duration: 0.2, ease: "power2.out" })
+                  .to(container, { y: 0, scaleY: 1, scaleX: 1, duration: 0.45, ease: "bounce.out" });
+          break;
+        case "wiggle":
+          // Needs a sequence or repeated tween, so we handle it differently
+          gsap.to(container, {
+            rotation: 15,
+            duration: 0.15,
+            yoyo: true,
+            repeat: 3,
+            ease: "power1.inOut",
+            overwrite: "auto",
+            onComplete: () => gsap.to(container, { rotation: 0, duration: 0.2 })
+          });
+          gsap.to(container, { scale: 1.1, duration: 0.3, overwrite: "auto" });
+          break;
+        case "flip":
+          animProps = { rotateY: 180, scale: 1.15, duration: 0.6, ease: "back.out(1.7)", overwrite: "auto" };
+          break;
+        case "spin":
+          animProps = { rotate: 360, scale: 1.1, duration: 0.8, ease: "power2.out", overwrite: "auto" };
+          break;
+        case "float":
+          animProps = { y: -10, scale: 1.05, duration: 0.4, ease: "power1.out", overwrite: "auto" };
+          break;
+        case "pulse":
+          animProps = { scale: 1.25, duration: 0.4, ease: "power2.inOut", yoyo: true, repeat: 1, overwrite: "auto" };
+          break;
+        default:
+          break; // uses spring-rotate
+      }
+
+      if (hoverStyle !== "wiggle" && hoverStyle !== "bounce") {
+        gsap.to(container, animProps);
+      }
+
+      vectors.forEach((el) => {
+        const svgEl = el as SVGGeometryElement;
+        let length = 100;
+        try {
+          if (typeof svgEl.getTotalLength === "function") {
+            length = svgEl.getTotalLength();
+          }
+        } catch (e) {}
+
+        gsap.fromTo(
+          svgEl,
+          { strokeDashoffset: length },
+          { strokeDashoffset: 0, duration: 0.8, ease: "power1.out", overwrite: "auto" }
+        );
+      });
+    };
+
+    const handleMouseLeave = () => {
+      gsap.to(container, {
+        scale: 1,
+        rotate: 0,
+        rotateY: 0,
+        y: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        overwrite: "auto",
+      });
+    };
+
+    // Listen to hover on parent card container (.group) if present, otherwise default to container
+    const triggerElement = container.closest(".group") || container;
+
+    triggerElement.addEventListener("mouseenter", handleMouseEnter);
+    triggerElement.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      triggerElement.removeEventListener("mouseenter", handleMouseEnter);
+      triggerElement.removeEventListener("mouseleave", handleMouseLeave);
+      trigger.kill();
+    };
+  }, [hoverStyle]);
+
+  return (
+    <div ref={containerRef} className={`inline-block ${className}`}>
+      {children}
+    </div>
+  );
+}
+
