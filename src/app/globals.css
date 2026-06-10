@@ -165,3 +165,16 @@ html {
 /* Hide scrollbar (comparison scroll box) */
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Slide down loop animation for reduction arrow */
+@keyframes slide-down-loop {
+  0% { transform: translateY(-12px); opacity: 0; }
+  30%, 70% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(12px); opacity: 0; }
+}
+
+.animate-slide-down-loop {
+  display: inline-block;
+  animation: slide-down-loop 2.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+

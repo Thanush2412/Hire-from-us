@@ -1,7 +1,7 @@
 import FaqAccordion from "./_components/FaqAccordion";
 import ContactForm from "./_components/ContactForm";
 import MobileComparison from "./_components/MobileComparison";
-import { FadeUp, StaggerGrid, StaggerItem, SlideLeft, SlideRight, ScalePop } from "./_components/Animate";
+import { FadeUp, StaggerGrid, StaggerItem, SlideLeft, SlideRight, ScalePop, CountingNumber, AnimatedStep, IconBox } from "./_components/Animate";
 import {
   Rocket,
   Target,
@@ -137,14 +137,18 @@ export default function HireFromUsPage() {
             {/* Stats Grid */}
             <StaggerGrid className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
               {[
-                { icon: Zap, metric: "60%", label: "Faster Onboarding" },
-                { icon: TrendingUp, metric: "80%", label: "PPO Conversion" },
-                { icon: CheckCircle2, metric: "Day 1", label: "Productive" },
-                { icon: Shield, metric: "100%", label: "Verified Skills" },
-              ].map(({ icon: Icon, metric, label }) => (
+                { icon: Zap,          motion: "flash"  as const, metric: "60%",  label: "Faster Onboarding" },
+                { icon: TrendingUp,   motion: "rise"   as const, metric: "80%",  label: "PPO Conversion" },
+                { icon: CheckCircle2, motion: "expand" as const, metric: "Day 1",label: "Productive" },
+                { icon: Shield,       motion: "drop"   as const, metric: "100%", label: "Verified Skills" },
+              ].map(({ icon: Icon, motion: m, metric, label }) => (
                 <StaggerItem key={label} className="fp-card p-5 text-center">
-                  <Icon size={20} className="text-[#F4A863] mx-auto mb-2" />
-                  <div className="text-2xl font-black gradient-text mb-1">{metric}</div>
+                  <IconBox motion={m} className="flex justify-center mb-2">
+                    <Icon size={20} className="text-[#F4A863]" />
+                  </IconBox>
+                  <div className="text-2xl font-black gradient-text mb-1">
+                    <CountingNumber value={metric} />
+                  </div>
                   <div className="text-xs text-[#DADADA]/70 font-medium">{label}</div>
                 </StaggerItem>
               ))}
@@ -174,15 +178,15 @@ export default function HireFromUsPage() {
 
             <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
               {[
-                { icon: AlertTriangle, text: "Freshers often lack real-world skills", color: "#F4A863" },
-                { icon: Clock, text: "Teams spend months on training before productivity", color: "#D528A2" },
-                { icon: Target, text: "Hiring outcomes are unpredictable", color: "#F4A863" },
-                { icon: TrendingUp, text: "Attrition risk is high", color: "#D528A2" },
-              ].map(({ icon: Icon, text, color }) => (
+                { icon: AlertTriangle, motion: "slideRight" as const, text: "Freshers often lack real-world skills",             color: "#F4A863" },
+                { icon: Clock,         motion: "spin"       as const, text: "Teams spend months on training before productivity", color: "#D528A2" },
+                { icon: Target,        motion: "expand"     as const, text: "Hiring outcomes are unpredictable",                  color: "#F4A863" },
+                { icon: TrendingUp,    motion: "rise"       as const, text: "Attrition risk is high",                            color: "#D528A2" },
+              ].map(({ icon: Icon, motion: m, text, color }) => (
                 <StaggerItem key={text} className="fp-card p-6 text-center group">
-                  <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <IconBox motion={m} className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Icon size={28} style={{ color }} />
-                  </div>
+                  </IconBox>
                   <p className="text-[#DADADA] text-sm leading-relaxed">{text}</p>
                 </StaggerItem>
               ))}
@@ -247,7 +251,7 @@ export default function HireFromUsPage() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-[#D528A2] to-[#F4A863] opacity-20 rounded-full blur-3xl"></div>
                 
                 {/* Developer girl image */}
-                <div className="relative z-10 overflow-hidden rounded-2xl border border-white/10 shadow-2xl max-w-md w-full">
+                <div className="relative z-10 overflow-hidden rounded-2xl border border-white/10 shadow-2xl max-w-md w-full animate-float">
                   <img 
                     src="/developer_girl.png" 
                     alt="Professional Developer" 
@@ -279,32 +283,36 @@ export default function HireFromUsPage() {
             {[
               {
                 icon: Code2,
+                motion: "slideLeft" as const,
                 title: "Technical Skills",
                 desc: "Candidates are trained in in-demand technologies like Java, Python, Full Stack Development, and Data Structures & Algorithms.",
               },
               {
                 icon: Target,
+                motion: "expand" as const,
                 title: "Problem Solving Ability",
                 desc: "Evaluated through real-world coding challenges and practical assessments — not just academic exams.",
               },
               {
                 icon: MessageSquare,
+                motion: "slideRight" as const,
                 title: "Communication & Workplace Readiness",
                 desc: "Every candidate is interview-ready, with strong communication and professional skills.",
               },
               {
                 icon: BarChart3,
+                motion: "rise" as const,
                 title: "Verified Performance Data",
                 desc: "Each profile comes with assessment scores, project work, and performance insights — so you hire with confidence.",
               },
-            ].map(({ icon: Icon, title, desc }) => (
+            ].map(({ icon: Icon, motion: m, title, desc }) => (
               <StaggerItem key={title} className="fp-card p-6 group">
                 <div className="flex gap-5">
-                  <div className="flex-shrink-0">
+                  <IconBox motion={m} className="flex-shrink-0">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#D528A2]/20 to-[#F4A863]/20 flex items-center justify-center group-hover:scale-110 transition-transform">
                       <Icon size={24} className="text-[#F4A863]" />
                     </div>
-                  </div>
+                  </IconBox>
                   <div>
                     <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
                     <p className="text-[#DADADA]/80 text-sm leading-relaxed">{desc}</p>
@@ -351,16 +359,18 @@ export default function HireFromUsPage() {
               </h3>
               <div className="space-y-5">
                 {[
-                  { icon: Trophy, label: "Verified Skill Scores" },
-                  { icon: Layers, label: "Project Portfolio" },
-                  { icon: Target, label: "Interview Readiness Rating" },
-                  { icon: FileText, label: "Resume + Performance Insights" },
-                ].map(({ icon: Icon, label }) => (
+                  { icon: Trophy,   motion: "drop"      as const, label: "Verified Skill Scores" },
+                  { icon: Layers,   motion: "flip"       as const, label: "Project Portfolio" },
+                  { icon: Target,   motion: "expand"     as const, label: "Interview Readiness Rating" },
+                  { icon: FileText, motion: "slideLeft"  as const, label: "Resume + Performance Insights" },
+                ].map(({ icon: Icon, motion: m, label }, idx) => (
                   <div
                     key={label}
                     className="flex items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-lg bg-white/5 border border-white/10 hover:border-white/20 transition-all"
                   >
-                    <Icon size={28} className="text-[#F4A863] flex-shrink-0" />
+                    <IconBox motion={m} standalone={true} delay={idx * 0.12} className="flex-shrink-0">
+                      <Icon size={28} className="text-[#F4A863]" />
+                    </IconBox>
                     <span className="text-white font-medium text-base sm:text-lg">{label}</span>
                   </div>
                 ))}
@@ -406,20 +416,14 @@ export default function HireFromUsPage() {
                 title: "Hire & Onboard",
                 desc: "Select candidates and onboard with minimal training required.",
               },
-            ].map(({ step, title, desc }) => (
-              <StaggerItem key={step} className="fp-card p-6 sm:p-8 relative overflow-hidden hover:border-white/20 transition-all">
-                <div
-                  className="absolute top-6 right-6 text-6xl font-black opacity-10 text-white leading-none"
-                  aria-hidden="true"
-                >
-                  {step}
-                </div>
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#D528A2] to-[#F4A863] flex items-center justify-center text-white font-bold text-base mb-5 relative z-10">
-                  {step}
-                </div>
-                <h3 className="text-white font-bold text-lg mb-3 relative z-10">{title}</h3>
-                <p className="text-[#DADADA] text-base leading-relaxed relative z-10">{desc}</p>
-              </StaggerItem>
+            ].map(({ step, title, desc }, i) => (
+              <AnimatedStep
+                key={step}
+                step={step}
+                title={title}
+                desc={desc}
+                index={i}
+              />
             ))}
           </StaggerGrid>
           <div className="mt-8 flex justify-center px-4">
@@ -433,7 +437,9 @@ export default function HireFromUsPage() {
                 style={{ whiteSpace: "nowrap" }}
               >
                 Reduce your time-to-hire by up to{" "}
-                <span className="gradient-text text-sm xs:text-base sm:text-xl md:text-2xl font-black">70%</span>
+                <span className="gradient-text text-sm xs:text-base sm:text-xl md:text-2xl font-black">
+                  <CountingNumber value="70%" />
+                </span>
               </span>
             </div>
           </div>
@@ -456,15 +462,15 @@ export default function HireFromUsPage() {
           </FadeUp>
           <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Briefcase, title: "Full-Time Hiring (FTE)", desc: "Direct placement of job-ready candidates into your team." },
-              { icon: RefreshCw, title: "Internship → PPO", desc: "Internship to Pre-Placement Offers — evaluate before you commit." },
-              { icon: FileText, title: "Apprenticeship Hiring", desc: "Aligned with the National Apprenticeship Training Scheme." },
-              { icon: Users, title: "Bulk Hiring", desc: "Scale your team fast — whether you need 2 or 200 candidates." },
-            ].map(({ icon: Icon, title, desc }) => (
+              { icon: Briefcase, motion: "slideLeft"  as const, title: "Full-Time Hiring (FTE)",      desc: "Direct placement of job-ready candidates into your team." },
+              { icon: RefreshCw, motion: "spin"        as const, title: "Internship → PPO",             desc: "Internship to Pre-Placement Offers — evaluate before you commit." },
+              { icon: FileText,  motion: "slideLeft"  as const, title: "Apprenticeship Hiring",        desc: "Aligned with the National Apprenticeship Training Scheme." },
+              { icon: Users,     motion: "expand"     as const, title: "Bulk Hiring",                  desc: "Scale your team fast — whether you need 2 or 200 candidates." },
+            ].map(({ icon: Icon, motion: m, title, desc }) => (
               <StaggerItem key={title} className="fp-card p-6 sm:p-8 text-center hover:border-white/20 transition-all">
-                <div className="flex justify-center mb-5">
+                <IconBox motion={m} className="flex justify-center mb-5">
                   <Icon size={44} className="text-[#F4A863]" />
-                </div>
+                </IconBox>
                 <h3 className="text-white font-bold text-lg mb-3">{title}</h3>
                 <p className="text-[#DADADA] text-base leading-relaxed">{desc}</p>
               </StaggerItem>
@@ -493,15 +499,17 @@ export default function HireFromUsPage() {
           </div>
           <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
-              { metric: "60%", label: "Faster Onboarding", icon: Zap },
-              { metric: "80%", label: "Internship-to-Full-Time Conversion", icon: TrendingUp },
-              { metric: "↓", label: "Significant Reduction in Training Costs", icon: Coins },
-            ].map(({ metric, label, icon: Icon }) => (
+              { metric: "60%", label: "Faster Onboarding",                    icon: Zap,       motion: "flash" as const },
+              { metric: "80%", label: "Internship-to-Full-Time Conversion",    icon: TrendingUp, motion: "rise"  as const },
+              { metric: "↓",   label: "Significant Reduction in Training Costs",icon: Coins,     motion: "flip"  as const },
+            ].map(({ metric, label, icon: Icon, motion: m }) => (
               <StaggerItem key={label} className="fp-card p-6 sm:p-10 text-center hover:border-white/20 transition-all">
-                <ScalePop className="flex justify-center mb-5">
+                <IconBox motion={m} className="flex justify-center mb-5">
                   <Icon size={40} className="text-[#F4A863]" />
-                </ScalePop>
-                <div className="text-6xl font-black gradient-text mb-4">{metric}</div>
+                </IconBox>
+                <div className="text-6xl font-black gradient-text mb-4">
+                  <CountingNumber value={metric} />
+                </div>
                 <p className="text-[#DADADA] font-medium text-lg">{label}</p>
               </StaggerItem>
             ))}
