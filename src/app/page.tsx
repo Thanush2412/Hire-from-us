@@ -66,9 +66,9 @@ export default function HireFromUsPage() {
       <header className="sticky top-0 z-50 border-b border-white/10 backdrop-blur-xl bg-[#3D3777]/90">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center">
-            <img 
-              src="/faceprepcampus-logo.svg" 
-              alt="FACE Prep Campus Logo" 
+            <img
+              src="/faceprepcampus-logo.svg"
+              alt="FACE Prep Campus Logo"
               className="h-9 w-auto"
             />
           </div>
@@ -122,10 +122,10 @@ export default function HireFromUsPage() {
                   <span>Request Candidate Profiles</span>
                   <ArrowRight size={16} />
                 </a>
-                <a 
-                  href="https://calendar.app.google/ub97dcaJ8MAbnSMz5" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://calendar.app.google/ub97dcaJ8MAbnSMz5"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-outline text-sm px-6 py-3 inline-flex items-center justify-center gap-2 font-semibold"
                 >
                   <span>Schedule a Call</span>
@@ -137,10 +137,10 @@ export default function HireFromUsPage() {
             {/* Stats Grid */}
             <StaggerGrid className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
               {[
-                { icon: Zap,          motion: "flash"  as const, metric: "60%",  label: "Faster Onboarding" },
-                { icon: TrendingUp,   motion: "rise"   as const, metric: "80%",  label: "PPO Conversion" },
-                { icon: CheckCircle2, motion: "expand" as const, metric: "Day 1",label: "Productive" },
-                { icon: Shield,       motion: "drop"   as const, metric: "100%", label: "Verified Skills" },
+                { icon: Zap, motion: "flash" as const, metric: "60%", label: "Faster Onboarding" },
+                { icon: TrendingUp, motion: "rise" as const, metric: "80%", label: "PPO Conversion" },
+                { icon: CheckCircle2, motion: "expand" as const, metric: "Day 1", label: "Productive" },
+                { icon: Shield, motion: "drop" as const, metric: "100%", label: "Verified Skills" },
               ].map(({ icon: Icon, motion: m, metric, label }) => (
                 <StaggerItem key={label} className="fp-card p-5 text-center">
                   <IconBox motion={m} className="flex justify-center mb-2">
@@ -178,10 +178,10 @@ export default function HireFromUsPage() {
 
             <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
               {[
-                { icon: AlertTriangle, motion: "slideRight" as const, text: "Freshers often lack real-world skills",             color: "#F4A863" },
-                { icon: Clock,         motion: "spin"       as const, text: "Teams spend months on training before productivity", color: "#D528A2" },
-                { icon: Target,        motion: "expand"     as const, text: "Hiring outcomes are unpredictable",                  color: "#F4A863" },
-                { icon: TrendingUp,    motion: "rise"       as const, text: "Attrition risk is high",                            color: "#D528A2" },
+                { icon: AlertTriangle, motion: "slideRight" as const, text: "Freshers often lack real-world skills", color: "#F4A863" },
+                { icon: Clock, motion: "spin" as const, text: "Teams spend months on training before productivity", color: "#D528A2" },
+                { icon: Target, motion: "expand" as const, text: "Hiring outcomes are unpredictable", color: "#F4A863" },
+                { icon: TrendingUp, motion: "rise" as const, text: "Attrition risk is high", color: "#D528A2" },
               ].map(({ icon: Icon, motion: m, text, color }) => (
                 <StaggerItem key={text} className="fp-card p-6 text-center group">
                   <IconBox motion={m} className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -249,12 +249,12 @@ export default function HireFromUsPage() {
               <SlideRight className="relative flex justify-center items-center mt-10 lg:mt-0">
                 {/* Background glow behind the image */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-[#D528A2] to-[#F4A863] opacity-20 rounded-full blur-3xl"></div>
-                
+
                 {/* Developer girl image */}
                 <div className="relative z-10 overflow-hidden rounded-2xl border border-white/10 shadow-2xl max-w-md w-full animate-float">
-                  <img 
-                    src="/developer_girl.png" 
-                    alt="Professional Developer" 
+                  <img
+                    src="/developer_girl.png"
+                    alt="Professional Developer"
                     className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -276,7 +276,7 @@ export default function HireFromUsPage() {
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
               Not Freshers.{" "}
-              <span className="gradient-text">Pre-Engineered Talent.</span>
+              <span className="gradient-text">Deployable Talent.</span>
             </h2>
           </FadeUp>
           <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -359,10 +359,10 @@ export default function HireFromUsPage() {
               </h3>
               <div className="space-y-5">
                 {[
-                  { icon: Trophy,   motion: "drop"      as const, label: "Verified Skill Scores" },
-                  { icon: Layers,   motion: "flip"       as const, label: "Project Portfolio" },
-                  { icon: Target,   motion: "expand"     as const, label: "Interview Readiness Rating" },
-                  { icon: FileText, motion: "slideLeft"  as const, label: "Resume + Performance Insights" },
+                  { icon: Trophy, motion: "drop" as const, label: "Verified Skill Scores" },
+                  { icon: Layers, motion: "flip" as const, label: "Project Portfolio" },
+                  { icon: Target, motion: "expand" as const, label: "Interview Readiness Rating" },
+                  { icon: FileText, motion: "slideLeft" as const, label: "Resume + Performance Insights" },
                 ].map(({ icon: Icon, motion: m, label }, idx) => (
                   <div
                     key={label}
@@ -427,12 +427,12 @@ export default function HireFromUsPage() {
             ))}
           </StaggerGrid>
           <div className="mt-8 flex justify-center px-4">
-            <div 
+            <div
               className="fp-card px-4 py-3 sm:px-6 sm:py-4 flex items-center justify-center gap-2 sm:gap-3 max-w-full"
               style={{ display: "flex", flexDirection: "row", flexWrap: "nowrap", alignItems: "center" }}
             >
               <Zap size={18} className="text-[#F4A863]" style={{ flexShrink: 0 }} />
-              <span 
+              <span
                 className="text-white font-bold text-xs xs:text-sm sm:text-base md:text-lg"
                 style={{ whiteSpace: "nowrap" }}
               >
@@ -462,10 +462,10 @@ export default function HireFromUsPage() {
           </FadeUp>
           <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: Briefcase, motion: "slideLeft"  as const, title: "Full-Time Hiring (FTE)",      desc: "Direct placement of job-ready candidates into your team." },
-              { icon: RefreshCw, motion: "spin"        as const, title: "Internship → PPO",             desc: "Internship to Pre-Placement Offers — evaluate before you commit." },
-              { icon: FileText,  motion: "slideLeft"  as const, title: "Apprenticeship Hiring",        desc: "Aligned with the National Apprenticeship Training Scheme." },
-              { icon: Users,     motion: "expand"     as const, title: "Bulk Hiring",                  desc: "Scale your team fast — whether you need 2 or 200 candidates." },
+              { icon: Briefcase, motion: "slideLeft" as const, title: "Full-Time Hiring (FTE)", desc: "Direct placement of job-ready candidates into your team." },
+              { icon: RefreshCw, motion: "spin" as const, title: "Internship → PPO", desc: "Internship to Pre-Placement Offers — evaluate before you commit." },
+              { icon: FileText, motion: "slideLeft" as const, title: "Apprenticeship Hiring", desc: "Aligned with the National Apprenticeship Training Scheme." },
+              { icon: Users, motion: "expand" as const, title: "Bulk Hiring", desc: "Scale your team fast — whether you need 2 or 200 candidates." },
             ].map(({ icon: Icon, motion: m, title, desc }) => (
               <StaggerItem key={title} className="fp-card p-6 sm:p-8 text-center hover:border-white/20 transition-all">
                 <IconBox motion={m} className="flex justify-center mb-5">
@@ -499,8 +499,8 @@ export default function HireFromUsPage() {
           </div>
           <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
-              { metric: "60%", label: "Faster Onboarding",                 icon: Zap,        motion: "flash" as const },
-              { metric: "80%", label: "Internship-to-Full-Time Conversion", icon: TrendingUp, motion: "rise"  as const },
+              { metric: "60%", label: "Faster Onboarding", icon: Zap, motion: "flash" as const },
+              { metric: "80%", label: "Internship-to-Full-Time Conversion", icon: TrendingUp, motion: "rise" as const },
             ].map(({ metric, label, icon: Icon, motion: m }) => (
               <StaggerItem key={label} className="fp-card p-6 sm:p-10 text-center hover:border-white/20 transition-all">
                 <IconBox motion={m} className="flex justify-center mb-5">
@@ -574,7 +574,12 @@ export default function HireFromUsPage() {
               {
                 aspect: "Approach",
                 bad: "Hire → Train → Hope for performance",
-                good: "Train → Assess → Hire",
+                good: "Assess → Train → Hire → Better Performance",
+              },
+              {
+                aspect: "Candidate Pool",
+                bad: "Limited Candidate Availability",
+                good: "Extensive Multi-Campus Talent Pool Across India",
               },
               {
                 aspect: "Readiness",
@@ -586,20 +591,15 @@ export default function HireFromUsPage() {
                 bad: "Limited visibility into candidate capability",
                 good: "Data-backed candidate evaluation",
               },
-              {
-                aspect: "Outcomes",
-                bad: "Higher hiring risk",
-                good: "Predictable performance outcomes",
-              },
-            ].map(({ aspect, bad, good }, i) => (
+            ].map(({ aspect, bad, good }, i, arr) => (
               <div
                 key={aspect}
-                className={`grid grid-cols-3 text-base ${i < 3 ? "border-b border-white/10" : ""}`}
+                className={`grid grid-cols-3 text-base ${i < arr.length - 1 ? "border-b border-white/10" : ""}`}
               >
                 <div className="p-5 text-white/70 font-semibold">{aspect}</div>
                 <div className="p-5 compare-row-bad border-l border-white/10 text-[#DADADA]/80">{bad}</div>
                 <div className="p-5 compare-row-good border-l border-white/10 bg-white/5 flex items-center gap-3">
-                  <CheckCircle2 size={18} className="text-[#D528A2] flex-shrink-0" /> 
+                  <CheckCircle2 size={18} className="text-[#D528A2] flex-shrink-0" />
                   <span className="text-white">{good}</span>
                 </div>
               </div>
@@ -621,29 +621,29 @@ export default function HireFromUsPage() {
         ══════════════════════════════════════════ */}
         <section className="py-4 md:py-6">
           <FadeUp>
-          <div
-            className="rounded-2xl p-6 sm:p-10 md:p-14 text-center"
-            style={{
-              background: "linear-gradient(135deg, rgba(213,40,162,0.15) 0%, rgba(244,168,99,0.1) 100%)",
-              border: "1px solid rgba(213,40,162,0.3)",
-            }}
-          >
-            <ScalePop className="flex justify-center mb-6">
-              <AlertTriangle size={56} className="text-[#F4A863]" />
-            </ScalePop>
-            <SectionLabel>Limited Access</SectionLabel>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-6 mb-6 leading-tight">
-              Top Talent Gets Hired Early
-            </h2>
-            <p className="text-[#DADADA] text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-              Our best candidates are often hired before graduation. Get early access
-              to secure top performers before they&apos;re gone.
-            </p>
-            <a href="#contact" className="btn-gradient text-base sm:text-lg px-8 sm:px-12 py-3 sm:py-4 inline-flex items-center gap-3 font-semibold">
-              <span>Get Early Access Now</span>
-              <ArrowRight size={20} />
-            </a>
-          </div>
+            <div
+              className="rounded-2xl p-6 sm:p-10 md:p-14 text-center"
+              style={{
+                background: "linear-gradient(135deg, rgba(213,40,162,0.15) 0%, rgba(244,168,99,0.1) 100%)",
+                border: "1px solid rgba(213,40,162,0.3)",
+              }}
+            >
+              <ScalePop className="flex justify-center mb-6">
+                <AlertTriangle size={56} className="text-[#F4A863]" />
+              </ScalePop>
+              <SectionLabel>Limited Access</SectionLabel>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-6 mb-6 leading-tight">
+                Top Talent Gets Hired Early
+              </h2>
+              <p className="text-[#DADADA] text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                Our best candidates are often hired before graduation. Get early access
+                to secure top performers before they&apos;re gone.
+              </p>
+              <a href="#contact" className="btn-gradient text-base sm:text-lg px-8 sm:px-12 py-3 sm:py-4 inline-flex items-center gap-3 font-semibold">
+                <span>Get Early Access Now</span>
+                <ArrowRight size={20} />
+              </a>
+            </div>
           </FadeUp>
         </section>
 
@@ -715,10 +715,10 @@ export default function HireFromUsPage() {
                     <span>Request Candidate Profiles</span>
                     <ArrowRight size={14} />
                   </a>
-                  <a 
-                    href="https://calendar.app.google/ub97dcaJ8MAbnSMz5" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <a
+                    href="https://calendar.app.google/ub97dcaJ8MAbnSMz5"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="btn-outline w-full text-sm py-2.5 flex items-center justify-center gap-2"
                   >
                     <span>Book a Hiring Consultation</span>

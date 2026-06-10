@@ -4,10 +4,10 @@ import { CheckCircle2, XCircle } from "lucide-react";
 import { motion } from "framer-motion";
 
 const items = [
-  { aspect: "Approach", bad: "Hire → Train → Hope", good: "Train → Assess → Hire" },
+  { aspect: "Approach", bad: "Hire → Train → Hope for performance", good: "Assess → Train → Hire → Better Performance" },
+  { aspect: "Candidate Pool", bad: "Limited Candidate Availability", good: "Extensive Multi-Campus Talent Pool Across India" },
   { aspect: "Readiness", bad: "High onboarding time", good: "Ready from Day 1" },
   { aspect: "Visibility", bad: "Limited candidate visibility", good: "Data-backed evaluation" },
-  { aspect: "Outcomes", bad: "Higher hiring risk", good: "Predictable performance" },
 ];
 
 export default function MobileComparison() {

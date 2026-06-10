@@ -396,3 +396,13 @@ html {
 .group:hover .card-magnify-inner {
   transform: scale(1.035);
 }
+
+/* Enable gradient clip inheritance for nested spans (e.g. LetterMagnifier inside .gradient-text) */
+.gradient-text span {
+  background: inherit;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+

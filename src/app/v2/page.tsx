@@ -33,7 +33,7 @@ import {
   FileText
 } from "lucide-react";
 import { FadeUp, StaggerGrid, StaggerItem, CountingNumber, IconBox, SlideLeft, SlideRight, GSAPIconBox } from "../_components/Animate";
-import heroStudents from "./Beige Retro Photo Frame Instagram Post.jpg";
+import heroImage from "./hero.png";
 
 /* ─── CUSTOM V2 COMPONENTS (React Bits Inspired) ─── */
 
@@ -187,7 +187,7 @@ function CursorTrail() {
       if (["A", "BUTTON", "INPUT", "SELECT", "TEXTAREA"].includes(tagName)) {
         return true;
       }
-      if (target.closest("a") || target.closest("button") || target.closest("input") || target.closest(".fp-card") || target.closest(".spotlight-card") || target.closest("[role='button']")) {
+      if (target.closest(".disable-cursor-trail") || target.closest("a") || target.closest("button") || target.closest("input") || target.closest(".fp-card") || target.closest(".spotlight-card") || target.closest("[role='button']")) {
         return true;
       }
       try {
@@ -195,7 +195,7 @@ function CursorTrail() {
         if (computedCursor === "pointer") {
           return true;
         }
-      } catch (err) {}
+      } catch (err) { }
       return false;
     };
 
@@ -330,16 +330,16 @@ export function SpotlightCard({
 
   const bg1 = useMotionTemplate`
     radial-gradient(
-      250px circle at ${mouseX}px ${mouseY}px,
-      rgba(213, 40, 162, 0.12),
+      200px circle at ${mouseX}px ${mouseY}px,
+      rgba(213, 40, 162, 0.05),
       transparent 80%
     )
   `;
 
   const bg2 = useMotionTemplate`
     radial-gradient(
-      120px circle at ${mouseX}px ${mouseY}px,
-      rgba(244, 168, 99, 0.35),
+      100px circle at ${mouseX}px ${mouseY}px,
+      rgba(244, 168, 99, 0.15),
       transparent 80%
     )
   `;
@@ -352,25 +352,24 @@ export function SpotlightCard({
   }
 
   const effectClass: Record<string, string> = {
-    "spotlight":     "",
-    "magnify":       "",
-    "border-trace":  "",
-    "shimmer":       "card-shimmer",
-    "neon-pulse":    "card-neon-pulse",
-    "tilt":          "card-tilt",
-    "reveal-fill":   "card-reveal-fill",
+    "spotlight": "",
+    "magnify": "",
+    "border-trace": "",
+    "shimmer": "card-shimmer",
+    "neon-pulse": "card-neon-pulse",
+    "tilt": "card-tilt",
+    "reveal-fill": "card-reveal-fill",
     "corner-expand": "card-corner-expand",
-    "none":          "",
+    "none": "",
   };
 
   return (
     <div
       onMouseMove={handleMouseMove}
-      className={`spotlight-card relative overflow-hidden rounded-2xl bg-[#0B0A14]/75 backdrop-blur-xl group transition-all duration-300 ${
-        effect === "border-trace"
-          ? "border border-white/10 hover:border-transparent"
-          : "border border-white/10 hover:border-white/20"
-      } ${effectClass[effect] ?? ""} ${className}`}
+      className={`spotlight-card relative overflow-hidden rounded-2xl bg-[#0B0A14]/75 backdrop-blur-xl group transition-all duration-300 ${effect === "border-trace"
+        ? "border border-white/10 hover:border-transparent"
+        : "border border-white/10 hover:border-white/20"
+        } ${effectClass[effect] ?? ""} ${className}`}
     >
       {/* Corner Tech Brackets — hidden for effects that own the border */}
       {effect !== "corner-expand" && effect !== "border-trace" && (
@@ -463,6 +462,26 @@ export function HackerText({ text, speed = 25 }: { text: string; speed?: number 
   }, [isInView, text, speed]);
 
   return <span ref={ref}>{displayText}</span>;
+}
+
+// Whole word hover magnify effect, respecting word wrap
+export function WordMagnifier({ text, className = "" }: { text: string; className?: string }) {
+  const isGradient = className.includes("gradient-text");
+  const parentClass = className.replace("gradient-text", "").trim();
+
+  return (
+    <span className={`inline ${parentClass}`}>
+      {text.split(" ").map((word, wordIdx) => (
+        <span
+          key={wordIdx}
+          className={`inline-block whitespace-nowrap mr-[0.25em] last:mr-0 transition-all duration-300 hover:scale-[1.07] hover:-translate-y-0.5 origin-bottom cursor-default select-none ${isGradient ? "gradient-text" : ""
+            }`}
+        >
+          {word}
+        </span>
+      ))}
+    </span>
+  );
 }
 
 /* ─── SUB-COMPONENTS FOR V2 SECTIONS ─── */
@@ -566,10 +585,10 @@ function V2FaqAccordion() {
 
 function V2MobileComparison() {
   const items = [
-    { aspect: "Approach", bad: "Hire → Train → Hope", good: "Train → Assess → Hire" },
+    { aspect: "Approach", bad: "Hire → Train → Hope for performance", good: "Assess → Train → Hire → Better Performance" },
+    { aspect: "Candidate Pool", bad: "Limited Candidate Availability", good: "Extensive Multi-Campus Talent Pool Across India" },
     { aspect: "Readiness", bad: "High onboarding time", good: "Ready from Day 1" },
     { aspect: "Visibility", bad: "Limited candidate visibility", good: "Data-backed evaluation" },
-    { aspect: "Outcomes", bad: "Higher hiring risk", good: "Predictable performance" },
   ];
 
   return (
@@ -783,9 +802,167 @@ function V2ContactForm() {
   );
 }
 
+// Interactive Particle Brackets (Antigravity IDE style)
+export function ParticleBrace({ side, className = "" }: { side: "left" | "right", className?: string }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    if (!ctx) return;
+
+    let width = (canvas.width = 160);
+    let height = (canvas.height = 450);
+
+    const offCanvas = document.createElement("canvas");
+    offCanvas.width = width;
+    offCanvas.height = height;
+    const offCtx = offCanvas.getContext("2d", { willReadFrequently: true });
+    if (!offCtx) return;
+
+    // Draw the text onto the offscreen canvas
+    offCtx.fillStyle = "white";
+    // Antigravity style: thin, elegant monospace font
+    offCtx.font = "200 480px 'Inter', monospace";
+    offCtx.textAlign = "center";
+    offCtx.textBaseline = "middle";
+    const textY = height / 2 + 20;
+    const textX = side === "left" ? width / 2 + 10 : width / 2 - 10;
+    offCtx.fillText(side === "left" ? "{" : "}", textX, textY);
+
+    const imgData = offCtx.getImageData(0, 0, width, height).data;
+    const points: { x: number; y: number }[] = [];
+
+    // Extract pixels (skip every 6 pixels to create a dotted effect)
+    for (let y = 0; y < height; y += 6) {
+      for (let x = 0; x < width; x += 6) {
+        const alpha = imgData[(y * width + x) * 4 + 3];
+        if (alpha > 128) {
+          points.push({
+            x: x + (Math.random() - 0.5) * 3, // tiny organic scatter
+            y: y + (Math.random() - 0.5) * 3
+          });
+        }
+      }
+    }
+
+    const particles = points.map(p => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      baseX: p.x,
+      baseY: p.y,
+      vx: 0,
+      vy: 0,
+      size: Math.random() * 1.5 + 0.8,
+      // brand gradient colors: pink, purple, orange
+      color: Math.random() > 0.6 ? "#D528A2" : Math.random() > 0.5 ? "#9B3DCE" : "#F4A863"
+    }));
+
+    let animationFrameId: number;
+    let mouse = { x: -1000, y: -1000, radius: 55 };
+
+    const handleMouseMove = (e: globalThis.MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    };
+    const handleMouseLeave = () => {
+      mouse.x = -1000;
+      mouse.y = -1000;
+    };
+
+    canvas.addEventListener("mousemove", handleMouseMove);
+    canvas.addEventListener("mouseleave", handleMouseLeave);
+
+    const animate = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        let dx = mouse.x - p.x;
+        let dy = mouse.y - p.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < mouse.radius) {
+          // Repel force
+          let force = (mouse.radius - dist) / mouse.radius;
+          p.vx -= (dx / dist) * force * 1.5;
+          p.vy -= (dy / dist) * force * 1.5;
+        }
+
+        // Return to base position
+        p.vx += (p.baseX - p.x) * 0.08;
+        p.vy += (p.baseY - p.y) * 0.08;
+
+        // Damping
+        p.vx *= 0.82;
+        p.vy *= 0.82;
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      canvas.removeEventListener("mousemove", handleMouseMove);
+      canvas.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [side]);
+
+  return <canvas ref={canvasRef} className={`w-[120px] sm:w-[160px] h-[350px] sm:h-[450px] pointer-events-auto ${className}`} style={{ mixBlendMode: "screen" }} />;
+}
+
 /* ─── MAIN V2 PAGE COMPONENT ─── */
 
 export default function V2Page() {
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [solutionTilt, setSolutionTilt] = useState({ x: 0, y: 0 });
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left - width / 2;
+    const mouseY = e.clientY - rect.top - height / 2;
+
+    // Max 15 degrees tilt for smooth movement
+    const rX = -(mouseY / height) * 15;
+    const rY = (mouseX / width) * 15;
+
+    setTilt({ x: rX, y: rY });
+  }
+
+  function handleMouseLeave() {
+    setTilt({ x: 0, y: 0 });
+  }
+
+  function handleSolutionMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left - width / 2;
+    const mouseY = e.clientY - rect.top - height / 2;
+
+    const rX = -(mouseY / height) * 15;
+    const rY = (mouseX / width) * 15;
+
+    setSolutionTilt({ x: rX, y: rY });
+  }
+
+  function handleSolutionMouseLeave() {
+    setSolutionTilt({ x: 0, y: 0 });
+  }
+
   useEffect(() => {
     document.body.style.backgroundColor = "#000000";
     return () => {
@@ -844,7 +1021,7 @@ export default function V2Page() {
                 <FadeUp>
                   <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 shadow-md shadow-black/50">
                     <Rocket size={14} className="text-[#F4A863]" />
-                    <span className="text-xs font-semibold text-white uppercase tracking-wider">Hire From Us — V2 Alpha</span>
+                    <span className="text-xs font-semibold text-white uppercase tracking-wider">Hire From Us</span>
                   </div>
                 </FadeUp>
                 <FadeUp delay={0.1}>
@@ -852,8 +1029,8 @@ export default function V2Page() {
                     Hire Pre-Trained,<br />
                     <span className="gradient-text">
                       <HackerText text="Job-Ready" />
-                    </span> Tech Talent<br />
-                    <span className="text-2xl md:text-3xl lg:text-4xl text-white/80">From Day 1</span>
+                    </span> <WordMagnifier text="Tech Talent" /><br />
+                    <span className="text-2xl md:text-3xl lg:text-4xl text-white/80"><WordMagnifier text="From Day 1" /></span>
                   </h1>
                 </FadeUp>
                 <FadeUp delay={0.2}>
@@ -882,15 +1059,144 @@ export default function V2Page() {
                 </FadeUp>
               </div>
 
-              {/* Right Column: Clean Image (Hidden on Mobile) */}
-              <div className="lg:col-span-6 hidden lg:flex justify-center relative">
-                {/* Clean Image Container - No custom border/mask frame, no zoom */}
-                <div className="relative z-10 w-full max-w-[430px] aspect-square animate-float">
-                  <img
-                    src={heroStudents.src}
-                    alt="Group of Students"
-                    className="w-full h-full object-contain scale-[1.15] mix-blend-screen"
-                  />
+              {/* Right Column: Premium Tech Dashboard Frame */}
+              <div
+                className="lg:col-span-6 hidden lg:flex justify-center items-center relative cursor-pointer"
+                style={{ perspective: 1200 }}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+              >
+                {/* 3D tilting assembly */}
+                <div
+                  className="relative transition-transform duration-300 ease-out animate-float"
+                  style={{
+                    width: 480,
+                    height: 480,
+                    transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+                    transformStyle: "preserve-3d",
+                  }}
+                >
+                  {/* ── Ambient Background Glow ── */}
+                  <div className="absolute -inset-8 rounded-[40px] bg-gradient-to-tr from-[#D528A2]/25 via-[#9B3DCE]/15 to-[#F4A863]/20 blur-[50px] opacity-75 -z-10" />
+
+                  {/* ── Main Tech Glassmorphism Panel ── */}
+                  <div
+                    className="absolute inset-0 bg-[#0B0A14]/75 backdrop-blur-xl border border-white/10 rounded-[32px] overflow-hidden shadow-2xl shadow-black/80 flex flex-col justify-between p-6 select-none"
+                    style={{ transform: "translateZ(0px)", transformStyle: "preserve-3d" }}
+                  >
+                    {/* Background grid overlay */}
+                    <div className="absolute inset-0 bg-grid-pattern opacity-[0.06] rounded-[32px] pointer-events-none" />
+
+                    {/* Corner Brackets */}
+                    {/* Top-Left */}
+                    <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#D528A2] rounded-tl-[32px] pointer-events-none z-20" />
+                    {/* Bottom-Right */}
+                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#F4A863] rounded-br-[32px] pointer-events-none z-20" />
+
+                    {/* Plus signs at corners */}
+                    <div className="absolute top-8 right-8 text-[#F4A863]/30 font-light text-sm pointer-events-none">+</div>
+                    <div className="absolute bottom-8 left-8 text-[#D528A2]/30 font-light text-sm pointer-events-none">+</div>
+
+                    {/* Header: Mac-style tabs controls */}
+                    <div className="flex items-center justify-between w-full border-b border-white/5 pb-4 relative z-20">
+                      <div className="flex items-center gap-1.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#D528A2] opacity-80 shadow-[0_0_8px_#D528A2]" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#9B3DCE] opacity-80 shadow-[0_0_8px_#9B3DCE]" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#F4A863] opacity-80 shadow-[0_0_8px_#F4A863]" />
+                      </div>
+                      <div className="font-mono text-[9px] text-white/30 tracking-widest flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_6px_#10b981]" />
+                        TALENT_PIPELINE_ACTIVE
+                      </div>
+                    </div>
+
+                    {/* Footer / Status Bar details */}
+                    <div className="flex items-center justify-between w-full border-t border-white/5 pt-4 font-mono text-[9px] text-white/30 relative z-20">
+                      <div>SYS.LOC // CAMPUS_NET</div>
+                      <div>SEC_CONN // ENCRYPTED</div>
+                    </div>
+                  </div>
+
+                  {/* ── Floating 3D Image Card ── */}
+                  <div
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
+                    {/* Dynamic offset shadow beneath the photo card */}
+                    <div
+                      className="absolute rounded-[24px] bg-black/90 blur-xl -z-10 transition-transform duration-200 ease-out"
+                      style={{
+                        width: 310,
+                        height: 310,
+                        transform: `translateZ(10px) translateY(${tilt.x * 0.4 + 12}px) translateX(${tilt.y * -0.4}px) scale(0.95)`,
+                      }}
+                    />
+
+                    {/* Nested Card carrying the Image */}
+                    <div
+                      className="rounded-[24px] p-[1.5px] bg-gradient-to-br from-[#D528A2] via-[#9B3DCE] to-[#F4A863] shadow-2xl transition-all duration-300"
+                      style={{
+                        width: 310,
+                        height: 310,
+                        transform: "translateZ(40px)",
+                        transformStyle: "preserve-3d",
+                      }}
+                    >
+                      <div className="w-full h-full rounded-[23.5px] overflow-hidden bg-black relative">
+                        {/* High-tech HUD grid scanlines inside image */}
+                        <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,_rgba(0,0,0,0.25)_50%),_linear-gradient(90deg,_rgba(255,0,0,0.04),_rgba(0,255,0,0.01),_rgba(0,0,255,0.04))] bg-[length:100%_4px,_6px_100%] pointer-events-none z-15 mix-blend-overlay opacity-60" />
+                        <img
+                          src={heroImage.src}
+                          alt="FACE Prep Tech Talent Pipeline"
+                          className="w-full h-full object-cover select-none pointer-events-none"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* ── 3D Interactive Floating Badges ── */}
+                  {/* Badge 1: Top-Right */}
+                  <div
+                    className="absolute -top-3 -right-6 backdrop-blur-md bg-[#0B0A14]/85 border border-white/10 text-white px-4 py-2 rounded-xl flex items-center gap-2 shadow-2xl shadow-black/50 pointer-events-none"
+                    style={{
+                      transform: "translateZ(75px)",
+                      transition: "transform 0.2s ease-out",
+                    }}
+                  >
+                    <div className="w-5 h-5 rounded-lg bg-[#D528A2]/10 border border-[#D528A2]/30 flex items-center justify-center">
+                      <Shield size={12} className="text-[#D528A2]" />
+                    </div>
+                    <span className="text-xs font-semibold tracking-wide text-white">100% Verified Skills</span>
+                  </div>
+
+                  {/* Badge 2: Bottom-Left */}
+                  <div
+                    className="absolute -bottom-4 -left-6 backdrop-blur-md bg-[#0B0A14]/85 border border-white/10 text-white px-4 py-2 rounded-xl flex items-center gap-2 shadow-2xl shadow-black/50 pointer-events-none"
+                    style={{
+                      transform: "translateZ(85px)",
+                      transition: "transform 0.2s ease-out",
+                    }}
+                  >
+                    <div className="w-5 h-5 rounded-lg bg-[#F4A863]/10 border border-[#F4A863]/30 flex items-center justify-center animate-pulse">
+                      <Zap size={12} className="text-[#F4A863]" />
+                    </div>
+                    <span className="text-xs font-semibold tracking-wide text-white">Day 1 Productive</span>
+                  </div>
+
+                  {/* Badge 3: Middle-Left */}
+                  <div
+                    className="absolute top-[40%] -left-12 backdrop-blur-md bg-[#0B0A14]/80 border border-white/10 text-white px-3.5 py-1.5 rounded-xl flex items-center gap-2 shadow-xl shadow-black/40 pointer-events-none"
+                    style={{
+                      transform: "translateZ(55px)",
+                      transition: "transform 0.2s ease-out",
+                    }}
+                  >
+                    <div className="w-4.5 h-4.5 rounded-md bg-[#9B3DCE]/10 border border-[#9B3DCE]/30 flex items-center justify-center">
+                      <Users size={11} className="text-[#9B3DCE]" />
+                    </div>
+                    <span className="text-[11px] font-semibold tracking-wide text-white/95">Pre-Trained Talent</span>
+                  </div>
+
                 </div>
               </div>
 
@@ -906,7 +1212,7 @@ export default function V2Page() {
               ].map(({ icon: Icon, metric, label }) => (
                 <StaggerItem key={label}>
                   <SpotlightCard effect="spotlight" className="text-center hover:scale-[1.03] transition-transform duration-300">
-                    <GSAPIconBox className="flex justify-center mb-4" hoverStyle="spring-rotate">
+                    <GSAPIconBox className="flex justify-center mb-4" hoverStyle="grow">
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#D528A2]/15 to-[#F4A863]/10 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30">
                         <Icon size={22} className="text-[#F4A863]" />
                       </div>
@@ -937,7 +1243,7 @@ export default function V2Page() {
                 </SectionLabel>
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-5 leading-tight">
-                Hiring Freshers Shouldn't<br />Feel Like a <span className="gradient-text">Gamble</span>
+                Hiring Freshers Shouldn't<br />Feel Like a <WordMagnifier text="Gamble" className="gradient-text" />
               </h2>
               <p className="text-base text-[#DADADA]/70 max-w-2xl mx-auto">
                 Every company wants to hire fresh talent. But the reality?
@@ -993,7 +1299,7 @@ export default function V2Page() {
                 </SectionLabel>
                 <h2 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight">
                   A Ready-to-Hire<br />
-                  <span className="gradient-text">Talent Pipeline</span><br />
+                  <WordMagnifier text="Talent Pipeline" className="gradient-text" /><br />
                   Built Inside Campuses
                 </h2>
                 <p className="text-base text-[#DADADA]/70 leading-relaxed mb-5">
@@ -1017,16 +1323,95 @@ export default function V2Page() {
               </SlideLeft>
 
               <SlideRight className="relative flex justify-center items-center mt-10 lg:mt-0">
-                {/* Background glow behind the image */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gradient-to-br from-[#D528A2] to-[#F4A863] opacity-15 rounded-full blur-3xl"></div>
+                {/* IDE Code Block curly brackets { } Frame */}
+                <div
+                  className="relative w-full max-w-md aspect-square flex items-center justify-center select-none group disable-cursor-trail"
+                  style={{ perspective: 1200 }}
+                >
+                  {/* Static 3D assembly (Rotation disabled) */}
+                  <div
+                    className="relative w-full h-full flex items-center justify-center transition-transform duration-300 ease-out"
+                    style={{
+                      transformStyle: "preserve-3d",
+                    }}
+                  >
+                    {/* Background Glow */}
+                    <div className="absolute -inset-8 rounded-full bg-gradient-to-tr from-[#D528A2]/15 to-[#F4A863]/10 blur-[45px] opacity-75 -z-10" />
 
-                {/* Developer girl image wrapper with spotlight border effect */}
-                <div className="relative z-10 overflow-hidden rounded-2xl border border-white/10 shadow-[0_0_50px_rgba(213,40,162,0.15)] max-w-md w-full animate-float">
-                  <img
-                    src="/developer_girl.png"
-                    alt="Professional Developer"
-                    className="w-full h-auto object-cover"
-                  />
+                    {/* Editor Code Grid (subtle background dots) */}
+                    <div className="absolute inset-4 bg-[radial-gradient(rgba(255,255,255,0.05)_1.5px,transparent_1.5px)] bg-[size:18px_18px] pointer-events-none opacity-50 rounded-2xl" />
+
+                    {/* Left gutter (IDE style line numbers) */}
+                    <div
+                      className="absolute left-4 top-14 bottom-14 flex flex-col justify-between font-mono text-[9px] text-white/10 select-none pointer-events-none"
+                      style={{ transform: "translateZ(10px)" }}
+                    >
+                      <div className="flex items-center gap-1"><span>01</span><span className="w-1 h-1 rounded-full bg-[#D528A2]/55" /></div>
+                      <div className="flex items-center gap-1"><span>02</span><span className="w-1 h-1 rounded-full bg-[#9B3DCE]/55" /></div>
+                      <div className="flex items-center gap-1"><span>03</span><span className="w-1 h-1 rounded-full bg-emerald-500/40" /></div>
+                      <div className="flex items-center gap-1"><span>04</span><span className="w-1 h-1 rounded-full bg-[#F4A863]/55" /></div>
+                      <div className="flex items-center gap-1"><span>05</span><span className="w-1 h-1 rounded-full bg-[#D528A2]/55" /></div>
+                    </div>
+
+                    {/* Vertical Dotted Guide Lines */}
+                    <div
+                      className="absolute left-14 top-12 bottom-12 border-l border-dotted border-white/10 w-[1px] pointer-events-none"
+                      style={{ transform: "translateZ(15px)" }}
+                    />
+                    <div
+                      className="absolute right-14 top-12 bottom-12 border-r border-dotted border-white/10 w-[1px] pointer-events-none"
+                      style={{ transform: "translateZ(15px)" }}
+                    />
+
+                    {/* Particle Reacting Left Curly Bracket { */}
+                    <div
+                      className="absolute left-[-16px] sm:left-[-32px] top-10 bottom-10 flex items-center justify-center pointer-events-none"
+                      style={{ transform: "translateZ(25px)" }}
+                    >
+                      <ParticleBrace side="left" className="drop-shadow-[0_0_15px_rgba(213,40,162,0.4)]" />
+                    </div>
+
+                    {/* Particle Reacting Right Curly Bracket } */}
+                    <div
+                      className="absolute right-[-16px] sm:right-[-32px] top-10 bottom-10 flex items-center justify-center pointer-events-none"
+                      style={{ transform: "translateZ(25px)" }}
+                    >
+                      <ParticleBrace side="right" className="drop-shadow-[0_0_15px_rgba(244,168,99,0.4)]" />
+                    </div>
+
+                    {/* Floating Center Image (No square frame) */}
+                    <div
+                      className="relative w-[68%] aspect-square flex items-center justify-center"
+                      style={{ transform: "translateZ(45px)" }}
+                    >
+                      <img
+                        src="/developer_girl.png"
+                        alt="Solution Developer Profile"
+                        className="w-full h-full object-contain select-none pointer-events-none filter drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
+                      />
+                    </div>
+
+                    {/* IDE status details at the bottom of editor block */}
+                    <div
+                      className="absolute bottom-8 left-20 right-20 flex items-center justify-between font-mono text-[8px] text-[#DADADA]/20 pointer-events-none"
+                      style={{ transform: "translateZ(30px)" }}
+                    >
+                      <div className="flex items-center gap-1">
+                        <span className="w-1 h-1 rounded-full bg-[#D528A2]/40" />
+                        <span className="w-2.5 h-0.5 rounded bg-white/5" />
+                      </div>
+                      <div>const solution = "FACE_PREP_CAMPUS";</div>
+                    </div>
+
+                    {/* Floating Skill Badges (IDE Tag style) */}
+                    <div
+                      className="absolute -top-3 left-[28%] backdrop-blur-md bg-black/70 border border-white/10 text-white/70 px-2.5 py-1 rounded-md text-[9px] font-mono shadow-lg pointer-events-none"
+                      style={{ transform: "translateZ(50px)" }}
+                    >
+                      <span className="text-[#D528A2]">import</span> {"{ Developer }"} <span className="text-[#9B3DCE]">from</span> <span className="text-[#F4A863]">"campus"</span>
+                    </div>
+
+                  </div>
                 </div>
               </SlideRight>
             </div>
@@ -1048,7 +1433,7 @@ export default function V2Page() {
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
               Not Freshers.{" "}
-              <span className="gradient-text">Pre-Engineered Talent.</span>
+              <span className="gradient-text">Deployable Talent.</span>
             </h2>
           </FadeUp>
           <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
@@ -1236,7 +1621,7 @@ export default function V2Page() {
               </SectionLabel>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
-              Hire the Way That Works for You
+              <WordMagnifier text="Hire the Way That Works for You" />
             </h2>
           </FadeUp>
           <StaggerGrid className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
@@ -1376,7 +1761,12 @@ export default function V2Page() {
                 {
                   aspect: "Approach",
                   bad: "Hire → Train → Hope for performance",
-                  good: "Train → Assess → Hire",
+                  good: "Assess → Train → Hire → Better Performance",
+                },
+                {
+                  aspect: "Candidate Pool",
+                  bad: "Limited Candidate Availability",
+                  good: "Extensive Multi-Campus Talent Pool Across India",
                 },
                 {
                   aspect: "Readiness",
@@ -1388,15 +1778,10 @@ export default function V2Page() {
                   bad: "Limited visibility into candidate capability",
                   good: "Data-backed candidate evaluation",
                 },
-                {
-                  aspect: "Outcomes",
-                  bad: "Higher hiring risk",
-                  good: "Predictable performance outcomes",
-                },
-              ].map(({ aspect, bad, good }, i) => (
+              ].map(({ aspect, bad, good }, i, arr) => (
                 <div
                   key={aspect}
-                  className={`grid grid-cols-3 text-base hover:bg-white/5 transition-colors duration-200 ${i < 3 ? "border-b border-white/5" : ""
+                  className={`grid grid-cols-3 text-base hover:bg-white/5 transition-colors duration-200 ${i < arr.length - 1 ? "border-b border-white/5" : ""
                     }`}
                 >
                   <div className="p-5 text-white/70 font-semibold">{aspect}</div>

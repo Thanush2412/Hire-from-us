@@ -355,7 +355,7 @@ export function GSAPIconBox({
 }: {
   children: ReactNode;
   className?: string;
-  hoverStyle?: "spring-rotate" | "bounce" | "wiggle" | "flip" | "spin" | "float" | "pulse";
+  hoverStyle?: "spring-rotate" | "bounce" | "wiggle" | "flip" | "spin" | "float" | "pulse" | "grow";
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -435,6 +435,9 @@ export function GSAPIconBox({
           break;
         case "pulse":
           animProps = { scale: 1.25, duration: 0.4, ease: "power2.inOut", yoyo: true, repeat: 1, overwrite: "auto" };
+          break;
+        case "grow":
+          animProps = { scale: 1.22, duration: 0.4, ease: "power2.out", overwrite: "auto" };
           break;
         default:
           break; // uses spring-rotate
