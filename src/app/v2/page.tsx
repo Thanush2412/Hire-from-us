@@ -1811,20 +1811,76 @@ export default function V2Page() {
         ══════════════════════════════════════════ */}
         <section className="py-6 md:py-8">
           <SpotlightCard className="!p-10 text-center relative overflow-hidden bg-gradient-to-br from-[#D528A2]/5 to-[#F4A863]/5 border-[1px] border-[#D528A2]/30">
-            <div className="flex justify-center mb-6">
+            {/* Floating Spheres on Edges */}
+            <motion.div
+              className="absolute w-28 h-28 rounded-full bg-gradient-to-tr from-[#D528A2] to-[#9B3DCE] opacity-45 blur-md"
+              style={{ left: "-40px", top: "-20px" }}
+              animate={{
+                y: [0, -12, 0],
+                x: [0, 6, 0],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+            <motion.div
+              className="absolute w-36 h-36 rounded-full bg-gradient-to-br from-[#F4A863] to-[#D528A2] opacity-40 blur-lg"
+              style={{ right: "-60px", bottom: "-30px" }}
+              animate={{
+                y: [0, 14, 0],
+                x: [0, -8, 0],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+            <motion.div
+              className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-[#9B3DCE] to-[#F4A863] opacity-35 blur-md"
+              style={{ right: "-20px", top: "15%" }}
+              animate={{
+                y: [0, -15, 0],
+                x: [0, -6, 0],
+              }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
+              }}
+            />
+            <motion.div
+              className="absolute w-24 h-24 rounded-full bg-gradient-to-tr from-[#D528A2] to-[#F4A863] opacity-40 blur-sm"
+              style={{ left: "-30px", bottom: "20%" }}
+              animate={{
+                y: [0, 10, 0],
+                x: [0, 8, 0],
+              }}
+              transition={{
+                duration: 9,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2,
+              }}
+            />
+
+            <div className="flex justify-center mb-6 relative z-10">
               <AlertTriangle size={56} className="text-[#F4A863] animate-pulse" />
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center relative z-10">
               <SectionLabel>Limited Access</SectionLabel>
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-6 mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-6 mb-6 leading-tight relative z-10">
               Top Talent Gets Hired Early
             </h2>
-            <p className="text-[#DADADA]/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+            <p className="text-[#DADADA]/80 text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed relative z-10">
               Our best candidates are often hired before graduation. Get early access
               to secure top performers before they&apos;re gone.
             </p>
-            <a href="#contact" className="btn-gradient text-base sm:text-lg px-8 sm:px-12 py-3.5 sm:py-4 inline-flex items-center gap-3 font-semibold relative group overflow-hidden">
+            <a href="#contact" className="btn-gradient text-base sm:text-lg px-8 sm:px-12 py-3.5 sm:py-4 inline-flex items-center gap-3 font-semibold relative group overflow-hidden z-10">
               <span className="relative z-10">Get Early Access Now</span>
               <ArrowRight size={20} className="relative z-10 group-hover:translate-x-0.5 transition-transform" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#D528A2] to-[#F4A863] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
