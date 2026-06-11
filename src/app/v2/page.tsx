@@ -1928,18 +1928,18 @@ export default function V2Page() {
                     AJ
                   </div>
                   <div>
-                    <h4 className="text-white font-bold">Ajith Jagadish</h4>
-                    <p className="text-[#DADADA]/60 text-xs font-semibold uppercase tracking-wider">Business Head — FACE Prep Campus</p>
+                    <h4 className="text-white font-bold">Abhishek Joseph</h4>
+                    <p className="text-[#DADADA]/60 text-xs font-semibold uppercase tracking-wider">AVP – Enterprise Relations</p>
                   </div>
                 </div>
                 <div className="space-y-3 pt-2">
                   <div className="flex items-center gap-3">
                     <Mail size={16} className="text-[#F4A863]" />
-                    <a href="mailto:ajith@faceprep.in" className="hover:text-white transition-colors">ajith@faceprep.in</a>
+                    <a href="mailto:abhishek@faceprep.in" className="hover:text-white transition-colors">abhishek@faceprep.in</a>
                   </div>
                   <div className="flex items-center gap-3">
                     <Phone size={16} className="text-[#F4A863]" />
-                    <a href="tel:+919840925763" className="hover:text-white transition-colors">+91 98409 25763</a>
+                    <a href="tel:+918868012396" className="hover:text-white transition-colors">+91 88680 12396</a>
                   </div>
                 </div>
               </SpotlightCard>
