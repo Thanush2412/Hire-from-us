@@ -30,7 +30,9 @@ import {
   Layers,
   Plus,
   Minus,
-  FileText
+  FileText,
+  Menu,
+  X
 } from "lucide-react";
 import { FadeUp, StaggerGrid, StaggerItem, CountingNumber, IconBox, SlideLeft, SlideRight, GSAPIconBox } from "./_components/Animate";
 import heroImage from "./hero.png";
@@ -320,10 +322,12 @@ export function SpotlightCard({
   children,
   className = "",
   effect = "spotlight",
+  padding = "p-5 sm:p-8 lg:p-10",
 }: {
   children: ReactNode;
   className?: string;
   effect?: "spotlight" | "magnify" | "border-trace" | "shimmer" | "neon-pulse" | "tilt" | "reveal-fill" | "corner-expand" | "none";
+  padding?: string;
 }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -421,7 +425,7 @@ export function SpotlightCard({
         </>
       )}
 
-      <div className={`relative z-10 p-5 sm:p-8 lg:p-10 ${effect === "magnify" ? "card-magnify-inner" : ""}`}>
+      <div className={`relative z-10 ${padding} ${effect === "magnify" ? "card-magnify-inner" : ""}`}>
         {children}
       </div>
     </div>
@@ -552,7 +556,7 @@ function V2FaqAccordion() {
   return (
     <div className="space-y-4">
       {faqs.map((faq, i) => (
-        <SpotlightCard key={i} className="!p-0 overflow-hidden">
+        <SpotlightCard key={i} className="overflow-hidden" padding="p-0">
           <button
             onClick={() => setOpen(open === i ? null : i)}
             className="w-full flex items-center justify-between px-8 py-6 text-left cursor-pointer outline-none focus:bg-white/5"
@@ -594,7 +598,7 @@ function V2MobileComparison() {
   return (
     <div className="block md:hidden w-full space-y-4 mt-6">
       {items.map((item, i) => (
-        <SpotlightCard key={item.aspect} className="!p-0 overflow-hidden">
+        <SpotlightCard key={item.aspect} className="overflow-hidden" padding="p-0">
           <div
             className="px-4 py-2.5 flex items-center justify-center border-b border-white/5"
             style={{
@@ -674,7 +678,7 @@ function V2ContactForm() {
 
   if (submitted) {
     return (
-      <SpotlightCard className="p-10 text-center">
+      <SpotlightCard className="text-center" padding="p-6 sm:p-10">
         <div className="flex justify-center mb-6">
           <CheckCircle2 size={72} className="text-[#F4A863] animate-bounce" />
         </div>
@@ -927,6 +931,7 @@ export function ParticleBrace({ side, className = "" }: { side: "left" | "right"
 export default function V2Page() {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [solutionTilt, setSolutionTilt] = useState({ x: 0, y: 0 });
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -986,28 +991,92 @@ export default function V2Page() {
 
       {/* ── NAV ── */}
       <header className="sticky top-0 z-50 border-b border-white/5 backdrop-blur-xl bg-black/60">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center">
             <img
               src="/faceprepcampus-logo.svg"
               alt="FACE Prep Campus Logo"
-              className="h-9 w-auto"
+              className="h-6 xs:h-7 sm:h-8 md:h-9 w-auto"
             />
           </div>
+          
+          {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-8 text-sm text-[#DADADA] font-medium">
             <a href="#solution" className="hover:text-[#F4A863] transition-all hover:scale-105">Solution</a>
             <a href="#talent-pool" className="hover:text-[#F4A863] transition-all hover:scale-105">Talent Pool</a>
             <a href="#how-it-works" className="hover:text-[#F4A863] transition-all hover:scale-105">Process</a>
             <a href="#contact" className="hover:text-[#F4A863] transition-all hover:scale-105">Contact</a>
           </nav>
-          <a href="#contact" className="btn-gradient text-sm px-6 py-2.5 font-semibold relative group overflow-hidden">
-            <span className="relative z-10">Get Started</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#D528A2] to-[#F4A863] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
-          </a>
+          
+          <div className="flex items-center gap-3 sm:gap-4">
+            {/* Get Started Button (Hidden on extra small mobile devices, visible on sm and up) */}
+            <a href="#contact" className="hidden xs:inline-flex btn-gradient text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 font-semibold relative group overflow-hidden">
+              <span className="relative z-10">Get Started</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#D528A2] to-[#F4A863] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
+            </a>
+            
+            {/* Mobile Menu Hamburger Icon (Hidden on desktop) */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-1.5 rounded-lg text-white hover:bg-white/5 focus:outline-none transition-colors"
+              aria-label="Toggle mobile menu"
+            >
+              {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu Drawer */}
+        <motion.div
+          initial={false}
+          animate={{ height: isMobileMenuOpen ? "auto" : 0, opacity: isMobileMenuOpen ? 1 : 0 }}
+          transition={{ duration: 0.25, ease: "easeInOut" }}
+          className="lg:hidden overflow-hidden bg-black/95 backdrop-blur-2xl border-t border-white/5 absolute w-full left-0 z-40"
+        >
+          <div className="px-6 py-6 space-y-4 flex flex-col text-base font-semibold text-[#DADADA]">
+            <a
+              href="#solution"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="py-2 border-b border-white/5 hover:text-[#F4A863] transition-colors"
+            >
+              Solution
+            </a>
+            <a
+              href="#talent-pool"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="py-2 border-b border-white/5 hover:text-[#F4A863] transition-colors"
+            >
+              Talent Pool
+            </a>
+            <a
+              href="#how-it-works"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="py-2 border-b border-white/5 hover:text-[#F4A863] transition-colors"
+            >
+              Process
+            </a>
+            <a
+              href="#contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="py-2 border-b border-white/5 hover:text-[#F4A863] transition-colors"
+            >
+              Contact
+            </a>
+            
+            {/* Get Started Button for extra small mobile inside drawer */}
+            <a
+              href="#contact"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="xs:hidden btn-gradient text-sm py-3 text-center font-semibold relative group overflow-hidden block w-full"
+            >
+              <span className="relative z-10">Get Started</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#D528A2] to-[#F4A863] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
+            </a>
+          </div>
+        </motion.div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ══════════════════════════════════════════
             HERO
@@ -1209,7 +1278,7 @@ export default function V2Page() {
                 { icon: Shield, metric: "100%", label: "Verified Skills" },
               ].map(({ icon: Icon, metric, label }) => (
                 <StaggerItem key={label}>
-                  <SpotlightCard effect="spotlight" className="text-center hover:scale-[1.03] transition-transform duration-300">
+                  <SpotlightCard effect="spotlight" className="text-center hover:scale-[1.03] transition-transform duration-300" padding="p-4 sm:p-6 lg:p-8">
                     <GSAPIconBox className="flex justify-center mb-4" hoverStyle="grow">
                       <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#D528A2]/15 to-[#F4A863]/10 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30">
                         <Icon size={22} className="text-[#F4A863]" />
@@ -1271,7 +1340,7 @@ export default function V2Page() {
 
             <FadeUp className="text-center">
               <div className="inline-block">
-                <SpotlightCard className="!py-4 !px-6 sm:!px-8 sm:!py-5">
+                <SpotlightCard padding="py-4 px-6 sm:px-8 sm:py-5">
                   <p className="text-white font-bold text-base md:text-lg">
                     You don't just need candidates.{" "}
                     <span className="gradient-text">You need job-ready performers from Day 1.</span>
@@ -1591,7 +1660,7 @@ export default function V2Page() {
             ))}
           </StaggerGrid>
           <div className="mt-10 flex justify-center px-4">
-            <SpotlightCard className="!py-3 !px-6 max-w-full text-center">
+            <SpotlightCard className="max-w-full text-center" padding="py-3 px-6">
               <div className="flex items-center justify-center gap-2 flex-wrap leading-relaxed">
                 <Zap size={18} className="text-[#F4A863] flex-shrink-0 -mt-0.5" />
                 <span className="text-white font-bold text-xs xs:text-sm sm:text-base md:text-lg">
@@ -1747,7 +1816,7 @@ export default function V2Page() {
 
           {/* Desktop view: Spotlight Comparison Table */}
           <div className="hidden md:block">
-            <SpotlightCard className="!p-0 overflow-hidden">
+            <SpotlightCard className="overflow-hidden" padding="p-0">
               <div className="grid grid-cols-3 text-base font-bold bg-white/5">
                 <div className="p-5 text-[#DADADA]/60 border-b border-white/5">Aspect</div>
                 <div className="p-5 text-[#DADADA]/60 border-b border-l border-white/5">Traditional Hiring</div>
@@ -1808,7 +1877,7 @@ export default function V2Page() {
             LIMITED ACCESS URGENCY
         ══════════════════════════════════════════ */}
         <section className="py-6 md:py-8">
-          <SpotlightCard className="!p-10 text-center relative overflow-hidden bg-gradient-to-br from-[#D528A2]/5 to-[#F4A863]/5 border-[1px] border-[#D528A2]/30">
+          <SpotlightCard className="text-center relative overflow-hidden bg-gradient-to-br from-[#D528A2]/5 to-[#F4A863]/5 border-[1px] border-[#D528A2]/30" padding="p-6 sm:p-10">
             {/* Floating Spheres on Edges */}
             <motion.div
               className="absolute w-28 h-28 rounded-full bg-gradient-to-tr from-[#D528A2] to-[#9B3DCE] opacity-45 blur-md"
