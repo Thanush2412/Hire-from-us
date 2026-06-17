@@ -70,7 +70,7 @@ export default function HireFromUsPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <img
-              src="/faceprepcampus-logo.svg"
+              src="/faceprepcampus-logo.png"
               alt="FACE Prep Campus Logo"
               className="h-9 w-auto"
             />

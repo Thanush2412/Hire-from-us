@@ -994,9 +994,9 @@ export default function V2Page() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center">
             <img
-              src="/faceprepcampus-logo.svg"
+              src="/faceprepcampus-logo.png"
               alt="FACE Prep Campus Logo"
-              className="h-6 xs:h-7 sm:h-8 md:h-9 w-auto"
+              className="h-8 xs:h-9 sm:h-9 md:h-10 w-auto"
             />
           </div>
           
