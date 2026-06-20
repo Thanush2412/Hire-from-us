@@ -82,7 +82,7 @@ export default function HireFromUsPage() {
             <a href="#contact" className="hover:text-[#F4A863] transition-all hover:scale-105">Contact</a>
           </nav>
           <a href="#contact" className="btn-gradient text-sm px-6 py-2.5 font-semibold">
-            Get Started
+            HIRE FROM US
           </a>
         </div>
       </header>

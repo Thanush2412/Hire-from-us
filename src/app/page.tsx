@@ -999,7 +999,7 @@ export default function V2Page() {
               className="h-8 xs:h-9 sm:h-9 md:h-10 w-auto"
             />
           </div>
-          
+
           {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-8 text-sm text-[#DADADA] font-medium">
             <a href="#solution" className="hover:text-[#F4A863] transition-all hover:scale-105">Solution</a>
@@ -1007,14 +1007,14 @@ export default function V2Page() {
             <a href="#how-it-works" className="hover:text-[#F4A863] transition-all hover:scale-105">Process</a>
             <a href="#contact" className="hover:text-[#F4A863] transition-all hover:scale-105">Contact</a>
           </nav>
-          
+
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Get Started Button (Hidden on extra small mobile devices, visible on sm and up) */}
+            {/* HIRE FROM US Button (Hidden on extra small mobile devices, visible on sm and up) */}
             <a href="#contact" className="hidden xs:inline-flex btn-gradient text-xs sm:text-sm px-4 sm:px-6 py-2 sm:py-2.5 font-semibold relative group overflow-hidden">
-              <span className="relative z-10">Get Started</span>
+              <span className="relative z-10">HIRE FROM US</span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#D528A2] to-[#F4A863] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
             </a>
-            
+
             {/* Mobile Menu Hamburger Icon (Hidden on desktop) */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -1062,14 +1062,14 @@ export default function V2Page() {
             >
               Contact
             </a>
-            
-            {/* Get Started Button for extra small mobile inside drawer */}
+
+            {/* HIRE FROM US Button for extra small mobile inside drawer */}
             <a
               href="#contact"
               onClick={() => setIsMobileMenuOpen(false)}
               className="xs:hidden btn-gradient text-sm py-3 text-center font-semibold relative group overflow-hidden block w-full"
             >
-              <span className="relative z-10">Get Started</span>
+              <span className="relative z-10">HIRE FROM US</span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#D528A2] to-[#F4A863] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm -z-10" />
             </a>
           </div>
